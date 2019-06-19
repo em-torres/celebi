@@ -66,6 +66,7 @@
             this.TxtClave.Name = "TxtClave";
             this.TxtClave.Size = new System.Drawing.Size(167, 20);
             this.TxtClave.TabIndex = 3;
+            this.TxtClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtClave_KeyPress);
             // 
             // TxtUsuario
             // 
@@ -73,6 +74,7 @@
             this.TxtUsuario.Name = "TxtUsuario";
             this.TxtUsuario.Size = new System.Drawing.Size(167, 20);
             this.TxtUsuario.TabIndex = 2;
+            this.TxtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtUsuario_KeyPress);
             // 
             // LblClave
             // 
@@ -91,7 +93,6 @@
             this.LblUsuario.Size = new System.Drawing.Size(56, 13);
             this.LblUsuario.TabIndex = 0;
             this.LblUsuario.Text = "USUARIO";
-            this.LblUsuario.Click += new System.EventHandler(this.Label1_Click_1);
             // 
             // pictureBox1
             // 
@@ -116,6 +117,7 @@
             this.BtnAceptar.Size = new System.Drawing.Size(66, 60);
             this.BtnAceptar.TabIndex = 5;
             this.BtnAceptar.UseVisualStyleBackColor = true;
+            this.BtnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
             // 
             // BtnCerrar
             // 
