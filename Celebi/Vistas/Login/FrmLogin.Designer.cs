@@ -66,6 +66,7 @@
             this.TxtClave.Name = "TxtClave";
             this.TxtClave.Size = new System.Drawing.Size(167, 20);
             this.TxtClave.TabIndex = 3;
+            this.TxtClave.UseSystemPasswordChar = true;
             this.TxtClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtClave_KeyPress);
             // 
             // TxtUsuario

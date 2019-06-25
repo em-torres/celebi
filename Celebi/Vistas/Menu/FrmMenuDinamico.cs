@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,92 @@ namespace celebi.Vistas.Menu
         public FrmMenuDinamico()
         {
             InitializeComponent();
+        }
+
+        private void FrmMenuDinamico_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                MenuBL consulta = new MenuBL();
+                DataSet DsMenu = new DataSet();
+                DataSet DsSubmenu = new DataSet();
+
+                DsMenu = consulta.MostrarMenu();
+                DsSubmenu = consulta.MostrarSubMenu();
+                CreateMenu(DsMenu.Tables["MenuOpciones"], DsSubmenu.Tables["SubMenuOpciones"]);
+
+                // Controla el pestañeo de Carga (Buffer)
+                DoubleBuffered = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void CreateMenu(DataTable dtMenus, DataTable dtSubMenus)
+        {
+            foreach (DataRow row in dtMenus.Rows)
+            {
+                // Creamos el elemento del menu
+                ToolStripMenuItem menuItem = new ToolStripMenuItem();
+
+                // Asignamos el texto que se mostrar
+                menuItem.Text = Convert.ToString(row["Nombre"]);
+
+                // Instalamos el controlador para el evento Click.
+                menuItem.Click += this.MenuItemOnClick;
+
+                // Obtenemos su identificador.
+                int idMenu = Convert.ToInt32(row["IdMenu"]);
+
+                // Seleccionamos los registros de la tabla
+                // Submenu que tengan el mismo identificador
+                // del elemento del menu actual.
+                DataRow[] rows = dtSubMenus.Select("IdMenu = " + idMenu);
+
+                foreach (DataRow r in rows)
+                {
+                    ToolStripMenuItem subItem = new ToolStripMenuItem();
+                    subItem.Text = Convert.ToString(r["Nombre"]);
+
+                    // Controlador para el evento Click.
+                    subItem.Click += MenuItemOnClick;
+
+                    // Anadimos el submenu a su correspondiente menu
+                    menuItem.DropDownItems.Add(subItem);
+                }
+                //Se lo asignamos al control MenuStrip
+                this.menuStrip1.Items.Add(menuItem);
+
+                // El formulario determina la propiedad del objeto creado
+                this.MainMenuStrip = menuStrip1;
+            }
+        }
+
+        private void MenuItemOnClick(object sender, EventArgs e)
+        {
+            // Referenciamos el control que ha desencadenado el evento
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+
+            if (item.ToString() == "Familia")
+            {
+                //FrMantClientes llamar = null;
+                //llamar = FrMantClientes.Instance();
+                //llamar.MdiParent = this;
+                //llamar.Show();
+            }
+            else if (item.ToString() == "Alumnos")
+            {
+                //Form1 llamar = null;
+                //llamar = Form1.Instance();
+                //llamar.MdiParent = this;
+                //llamar.Show();
+            }
+            else if (item.ToString() == "Salir")
+            {
+                Close();
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Datos
         {
             try
             {
-                return retornarDataset("proc_Menu", "MenuOpciones");
+                return retornarDataset("PROC_Menu", "MenuOpciones");
             }
             catch (Exception)
             {
@@ -35,7 +35,7 @@ namespace Datos
         {
             try
             {
-                return retornarDataset("proc_SubMenu", "SubMenuOpciones");
+                return retornarDataset("PROC_SubMenu", "SubMenuOpciones");
             }
             catch (Exception)
             {
