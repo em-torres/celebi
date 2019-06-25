@@ -25,7 +25,7 @@ namespace Datos
         {
             get
             {
-                return ConfigurationManager.ConnectionStrings["FinalTresCapas2019.Properties.Settings.Conectar"].ToString();
+                return ConfigurationManager.ConnectionStrings["Celebi.Properties.Settings.Conectar"].ToString();
             }
 
         }

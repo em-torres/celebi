@@ -48,15 +48,15 @@ namespace Datos
             bool existe = false;
             int i = 0;
 
-            conn = new SqlConnection(ConfigurationManager.ConnectionStrings["FinalTresCapas2019.Properties.Settings.Conectar"].ToString());
-            using (SqlCommand cmd = new SqlCommand("usp_ValidarUsuario", conn))
+            conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Celebi.Properties.Settings.Conectar"].ToString());
+            using (SqlCommand cmd = new SqlCommand("USR_ValidarUsuario", conn))
             {
                 try
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Connection.Open();
-                    cmd.Parameters.AddWithValue("@USU", usuario);
-                    cmd.Parameters.AddWithValue("@Cla", clave);
+                    cmd.Parameters.AddWithValue("@usu", usuario);
+                    cmd.Parameters.AddWithValue("@cla", clave);
 
                     Reader = cmd.ExecuteReader();
 
