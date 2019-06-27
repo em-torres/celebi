@@ -1,4 +1,5 @@
-﻿using Logica;
+﻿using celebi.Vistas.Mantenimiento;
+using Logica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,12 +85,12 @@ namespace celebi.Vistas.Menu
             // Referenciamos el control que ha desencadenado el evento
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
 
-            if (item.ToString() == "Familia")
+            if (item.ToString() == "Departamentos")
             {
-                //FrMantClientes llamar = null;
-                //llamar = FrMantClientes.Instance();
-                //llamar.MdiParent = this;
-                //llamar.Show();
+                FrmDepartamentos llamar = null;
+                llamar = FrmDepartamentos.Instance();
+                llamar.MdiParent = this;
+                llamar.Show();
             }
             else if (item.ToString() == "Alumnos")
             {
@@ -102,6 +103,24 @@ namespace celebi.Vistas.Menu
             {
                 Close();
             }
+        }
+
+        private void ToolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void ToolStripButton2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ToolStripButton1_Click(object sender, EventArgs e)
+        {
+            FrmDepartamentos llamar = null;
+            llamar = FrmDepartamentos.Instance();
+            llamar.MdiParent = this;
+            llamar.Show();
         }
     }
 }
