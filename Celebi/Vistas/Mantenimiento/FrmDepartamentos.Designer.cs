@@ -29,26 +29,35 @@
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.rbId = new System.Windows.Forms.RadioButton();
-            this.rbNombre = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dgvDepto = new System.Windows.Forms.DataGridView();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.btnGuardar = new System.Windows.Forms.ToolStripButton();
             this.btnActualizar = new System.Windows.Forms.ToolStripButton();
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
             this.btnSalir = new System.Windows.Forms.ToolStripButton();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgvDepto = new System.Windows.Forms.DataGridView();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtBusqueda = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbNombre = new System.Windows.Forms.RadioButton();
+            this.rbId = new System.Windows.Forms.RadioButton();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkActivo = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.btnGuardar2 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepto)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -65,6 +74,56 @@
             this.toolStrip1.Size = new System.Drawing.Size(481, 37);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNuevo.Image = global::celebi.Properties.Resources.new_2;
+            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(34, 34);
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnGuardar.Image = global::celebi.Properties.Resources.save;
+            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(34, 34);
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnActualizar.Image = global::celebi.Properties.Resources.update;
+            this.btnActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(34, 34);
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEliminar.Image = global::celebi.Properties.Resources.delete;
+            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(34, 34);
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSalir.Image = global::celebi.Properties.Resources.back;
+            this.btnSalir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(34, 34);
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
             // tabControl1
             // 
@@ -90,15 +149,32 @@
             this.tabPage1.Text = "Listado";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // dgvDepto
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(415, 221);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Edición";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.dgvDepto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDepto.Location = new System.Drawing.Point(3, 75);
+            this.dgvDepto.Name = "dgvDepto";
+            this.dgvDepto.Size = new System.Drawing.Size(467, 173);
+            this.dgvDepto.TabIndex = 2;
+            this.dgvDepto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDepto_CellContentClick);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtBusqueda);
+            this.groupBox2.Location = new System.Drawing.Point(200, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 63);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Busqueda";
+            // 
+            // txtBusqueda
+            // 
+            this.txtBusqueda.Location = new System.Drawing.Point(6, 24);
+            this.txtBusqueda.Name = "txtBusqueda";
+            this.txtBusqueda.Size = new System.Drawing.Size(172, 20);
+            this.txtBusqueda.TabIndex = 0;
+            this.txtBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqueda_KeyPress);
             // 
             // groupBox1
             // 
@@ -111,15 +187,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtro";
             // 
-            // groupBox2
+            // rbNombre
             // 
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Location = new System.Drawing.Point(200, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 63);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Busqueda";
+            this.rbNombre.AutoSize = true;
+            this.rbNombre.Location = new System.Drawing.Point(58, 25);
+            this.rbNombre.Name = "rbNombre";
+            this.rbNombre.Size = new System.Drawing.Size(62, 17);
+            this.rbNombre.TabIndex = 1;
+            this.rbNombre.TabStop = true;
+            this.rbNombre.Text = "Nombre";
+            this.rbNombre.UseVisualStyleBackColor = true;
             // 
             // rbId
             // 
@@ -132,76 +209,86 @@
             this.rbId.Text = "Id";
             this.rbId.UseVisualStyleBackColor = true;
             // 
-            // rbNombre
+            // tabPage2
             // 
-            this.rbNombre.AutoSize = true;
-            this.rbNombre.Location = new System.Drawing.Point(58, 25);
-            this.rbNombre.Name = "rbNombre";
-            this.rbNombre.Size = new System.Drawing.Size(62, 17);
-            this.rbNombre.TabIndex = 1;
-            this.rbNombre.TabStop = true;
-            this.rbNombre.Text = "Nombre";
-            this.rbNombre.UseVisualStyleBackColor = true;
+            this.tabPage2.Controls.Add(this.btnGuardar2);
+            this.tabPage2.Controls.Add(this.groupBox3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(473, 251);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Edición";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // groupBox3
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(172, 20);
-            this.textBox1.TabIndex = 0;
+            this.groupBox3.Controls.Add(this.chkActivo);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.txtNombre);
+            this.groupBox3.Controls.Add(this.txtId);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(298, 245);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Datos";
             // 
-            // dgvDepto
+            // chkActivo
             // 
-            this.dgvDepto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDepto.Location = new System.Drawing.Point(3, 75);
-            this.dgvDepto.Name = "dgvDepto";
-            this.dgvDepto.Size = new System.Drawing.Size(467, 173);
-            this.dgvDepto.TabIndex = 2;
+            this.chkActivo.AutoSize = true;
+            this.chkActivo.Location = new System.Drawing.Point(92, 151);
+            this.chkActivo.Name = "chkActivo";
+            this.chkActivo.Size = new System.Drawing.Size(56, 17);
+            this.chkActivo.TabIndex = 7;
+            this.chkActivo.Text = "Activo";
+            this.chkActivo.UseVisualStyleBackColor = true;
             // 
-            // btnNuevo
+            // label2
             // 
-            this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNuevo.Image = global::celebi.Properties.Resources.new_2;
-            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(34, 34);
-            this.btnNuevo.Text = "Nuevo";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(26, 118);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Nombre";
             // 
-            // btnGuardar
+            // label1
             // 
-            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGuardar.Image = global::celebi.Properties.Resources.save;
-            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(34, 34);
-            this.btnGuardar.Text = "Guardar";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(26, 85);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "ID";
             // 
-            // btnActualizar
+            // txtNombre
             // 
-            this.btnActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnActualizar.Image = global::celebi.Properties.Resources.update;
-            this.btnActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(34, 34);
-            this.btnActualizar.Text = "Actualizar";
+            this.txtNombre.Location = new System.Drawing.Point(92, 115);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(158, 20);
+            this.txtNombre.TabIndex = 2;
             // 
-            // btnEliminar
+            // txtId
             // 
-            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEliminar.Image = global::celebi.Properties.Resources.delete;
-            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(34, 34);
-            this.btnEliminar.Text = "Eliminar";
+            this.txtId.Location = new System.Drawing.Point(92, 82);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(158, 20);
+            this.txtId.TabIndex = 1;
+            this.txtId.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
-            // btnSalir
+            // btnGuardar2
             // 
-            this.btnSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSalir.Image = global::celebi.Properties.Resources.back;
-            this.btnSalir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(34, 34);
-            this.btnSalir.Text = "Salir";
+            this.btnGuardar2.BackgroundImage = global::celebi.Properties.Resources.save;
+            this.btnGuardar2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGuardar2.Location = new System.Drawing.Point(348, 84);
+            this.btnGuardar2.Name = "btnGuardar2";
+            this.btnGuardar2.Size = new System.Drawing.Size(88, 86);
+            this.btnGuardar2.TabIndex = 1;
+            this.btnGuardar2.UseVisualStyleBackColor = true;
+            this.btnGuardar2.Click += new System.EventHandler(this.BtnGuardar2_Click);
             // 
             // FrmDepartamentos
             // 
@@ -217,11 +304,14 @@
             this.toolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDepto)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDepto)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,11 +328,18 @@
         private System.Windows.Forms.RadioButton rbNombre;
         private System.Windows.Forms.RadioButton rbId;
         private System.Windows.Forms.DataGridView dgvDepto;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBusqueda;
         private System.Windows.Forms.ToolStripButton btnNuevo;
         private System.Windows.Forms.ToolStripButton btnGuardar;
         private System.Windows.Forms.ToolStripButton btnActualizar;
         private System.Windows.Forms.ToolStripButton btnEliminar;
         private System.Windows.Forms.ToolStripButton btnSalir;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.CheckBox chkActivo;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnGuardar2;
     }
 }

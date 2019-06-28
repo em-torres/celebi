@@ -28,7 +28,7 @@ namespace Logica
             cli.EliminarDepartamento(entidad);
         }
 
-        public void ActualizarClientes(Departamentos entidad)
+        public void ActualizarDepartamento(Departamentos entidad)
         {
             cli.ActualizarDepartamento(entidad);
         }

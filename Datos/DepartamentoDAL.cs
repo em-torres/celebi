@@ -34,6 +34,7 @@ namespace Datos
                 Dt = new DataTable();
                 AdaptadorSQL.Fill(Dt);
             }
+
             return Dt;
         }
 
@@ -76,7 +77,7 @@ namespace Datos
                 ComandoSQL.CommandText = "proc_DEPARTAMENTOSEliminar";
                 try
                 {
-                    ComandoSQL.Parameters.AddWithValue("@IdCliente", Departamento.IdDepto);
+                    ComandoSQL.Parameters.AddWithValue("@IdDepto", Departamento.IdDepto);
 
                     //Ejecutar Comando
                     ComandoSQL.ExecuteNonQuery();
