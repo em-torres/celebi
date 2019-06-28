@@ -18,9 +18,9 @@ namespace Logica
             return cli.ObtenerDepartamentos();
         }
 
-        public void RegDepartamento(Departamentos entidad)
+        public string RegDepartamento(Departamentos entidad)
         {
-            cli.InsertarDepartamento(entidad);
+            return cli.InsertarDepartamento(entidad);
         }
 
         public void EliminarDepartamento(Departamentos entidad)

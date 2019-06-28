@@ -16,8 +16,6 @@ namespace celebi.Vistas.Mantenimiento
     {
         private static FrmDepartamentos frmInstance = null;
 
-        string ID;
-
         public static FrmDepartamentos Instance()
         {
             if (((frmInstance == null) || (frmInstance.IsDisposed == true)))
@@ -122,6 +120,9 @@ namespace celebi.Vistas.Mantenimiento
         {
             if (validar())
             {
+                string respuesta;
+                string mensaje = "Registro agregado con éxito.";
+
                 DepartamentoBL cli = new DepartamentoBL();
                 Departamentos entidades = new Departamentos();
 
@@ -134,17 +135,40 @@ namespace celebi.Vistas.Mantenimiento
                 entidades.NombDepto = txtNombre.Text;
                 entidades.Activo = chkActivo.Checked;
 
-                cli.RegDepartamento(entidades);
+                respuesta = cli.RegDepartamento(entidades);
 
-                LlenarGridDepto();
-                MessageBox.Show("Registro agregado con éxito.", "Agregado", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                btnNuevo.PerformClick();
-                tabControl1.SelectedIndex = 0;
+                switch (respuesta)
+                {
+                    case "exito":
+                        MessageBox.Show(mensaje, "Agregado",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information
+                        );
+                        btnNuevo.PerformClick();
+                        LlenarGridDepto();
+                        tabControl1.SelectedIndex = 0;
+                        break;
+
+                    case "existe":
+                        mensaje = "Este ID ya se encuentra registrado. Favor cambiarlo o " +
+                            "hacer click en Actualizar si desea cambiar el registro. Gracias.";
+                        MessageBox.Show(mensaje, "Error al Guardar",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error
+                        );
+                        break;
+
+                    default:
+                        MessageBox.Show(
+                            respuesta,
+                            "Error al Registrar",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                        break;
+                }
             }
             else
             {
-                MessageBox.Show("Hay campos que son obligatorios que se encuentran vacios.", "Error de validación", MessageBoxButtons.OK,
+                MessageBox.Show("Hay campos que son obligatorios y se encuentran vacios.", "Error de validación", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }
@@ -162,6 +186,9 @@ namespace celebi.Vistas.Mantenimiento
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
+            string mensaje = "Debe seleccionar un registro válido antes de actualizar. " +
+                    "Por favor seleccione un registro en la pestaña de busqueda que " +
+                    "desea actualizar y vuelva a intentarlo.";
             try
             {
                 Departamentos entidad = new Departamentos();
@@ -169,14 +196,13 @@ namespace celebi.Vistas.Mantenimiento
 
                 if (txtId.Text == "")
                 {
-                    MessageBox.Show("Debe seleccionar un registro válido antes de actualizar." +
-                    " Por favor seleccione un registro en la pestaña de busqueda que desea actualizar "
-                      + "y vuelva a intentarlo.", "Error de eliminación",
+                    MessageBox.Show(mensaje, "Error de eliminación",
                       MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     tabControl1.SelectedIndex = 0;
                 }
                 else
                 {
+                    mensaje = "Registro Actualizado.";
                     entidad.IdDepto = txtId.Text;
                     entidad.NombDepto = txtNombre.Text;
                     entidad.Activo = chkActivo.Checked;
@@ -184,8 +210,8 @@ namespace celebi.Vistas.Mantenimiento
                     actualizar.ActualizarDepartamento(entidad);
 
                     LlenarGridDepto();
-                    MessageBox.Show("Registro Actualizado.", "Actualización", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                    MessageBox.Show(mensaje, "Actualización",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnNuevo.PerformClick();
                     tabControl1.SelectedIndex = 0;
                 }
@@ -205,33 +231,39 @@ namespace celebi.Vistas.Mantenimiento
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
+            string mensaje = "Debe seleccionar un registro válido antes de eliminar." +
+                    " Por favor seleccione un registro en la pestaña de busqueda que" +
+                    "desea eliminar y vuelva a intentarlo.";
             try
             {
                 if (txtId.Text == "")
                 {
-                    MessageBox.Show("Debe seleccionar un registro válido antes de eliminar." +
-                    " Por favor seleccione un registro en la pestaña de busqueda que desea eliminar "
-                      + "y vuelva a intentarlo.", "Error de eliminación",
+                    MessageBox.Show(mensaje, "Error de eliminación",
                       MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     tabControl1.SelectedIndex = 0;
                 }
                 else
                 {
-                    DialogResult resultado = MessageBox.Show("Realmente desea eliminar el registro de nombre: " + txtNombre.Text + "?",
-                                      "¿Desea eliminar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    mensaje = "Realmente desea eliminar el registro de nombre: " +
+                        txtNombre.Text + "?";
+                    DialogResult resultado = MessageBox.Show(mensaje, "¿Desea eliminar?",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2);
 
                     if (resultado == DialogResult.Yes)
                     {
+                        mensaje = "Registro Eliminado.";
                         Departamentos entidad = new Departamentos();
                         entidad.IdDepto = txtId.Text;
                         DepartamentoBL eliminar = new DepartamentoBL();
                         eliminar.EliminarDepartamento(entidad);
 
                         LlenarGridDepto();
-                        MessageBox.Show("Registro Eliminado.", "Eliminación", MessageBoxButtons.OK,
-                     MessageBoxIcon.Information);
                         btnNuevo.PerformClick();
                         tabControl1.SelectedIndex = 0;
+
+                        MessageBox.Show(mensaje, "Eliminación",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }

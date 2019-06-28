@@ -38,8 +38,10 @@ namespace Datos
             return Dt;
         }
 
-        public void InsertarDepartamento(Departamentos Departamento)
+        public string InsertarDepartamento(Departamentos Departamento)
         {
+            string respuesta = "";
+
             AccesoDatos.ObtenerConexion().Open();
             using (ComandoSQL = new SqlCommand())
             {
@@ -54,9 +56,15 @@ namespace Datos
 
                     //Ejecutar Comando
                     ComandoSQL.ExecuteNonQuery();
+                    respuesta = "exito";
                 }
-                catch (Exception)
+                catch (SqlException e) when (e.Number == 2627)
                 {
+                    respuesta = "existe";
+                }
+                catch (Exception e)
+                {
+                    respuesta = e.Message;
                     throw;
                 }
                 finally
@@ -65,6 +73,7 @@ namespace Datos
                 }
             }
 
+            return respuesta;
         }
 
         public void EliminarDepartamento(Departamentos Departamento)
