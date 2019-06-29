@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
-            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
-            this.btnActualizar = new System.Windows.Forms.ToolStripButton();
-            this.btnEliminar = new System.Windows.Forms.ToolStripButton();
-            this.btnSalir = new System.Windows.Forms.ToolStripButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvDepto = new System.Windows.Forms.DataGridView();
@@ -49,7 +44,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnSalir2 = new System.Windows.Forms.Button();
+            this.btnEliminar2 = new System.Windows.Forms.Button();
+            this.btnNuevo2 = new System.Windows.Forms.Button();
+            this.btnActualizar2 = new System.Windows.Forms.Button();
             this.btnGuardar2 = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
+            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
+            this.btnActualizar = new System.Windows.Forms.ToolStripButton();
+            this.btnEliminar = new System.Windows.Forms.ToolStripButton();
+            this.btnSalir = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -75,56 +80,6 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnNuevo
-            // 
-            this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNuevo.Image = global::celebi.Properties.Resources.new_2;
-            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(34, 34);
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGuardar.Image = global::celebi.Properties.Resources.save;
-            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(34, 34);
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnActualizar.Image = global::celebi.Properties.Resources.update;
-            this.btnActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(34, 34);
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEliminar.Image = global::celebi.Properties.Resources.delete;
-            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(34, 34);
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSalir.Image = global::celebi.Properties.Resources.back;
-            this.btnSalir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(34, 34);
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -138,6 +93,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnBuscar);
             this.tabPage1.Controls.Add(this.dgvDepto);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -163,16 +119,19 @@
             this.groupBox2.Controls.Add(this.txtBusqueda);
             this.groupBox2.Location = new System.Drawing.Point(200, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 63);
+            this.groupBox2.Size = new System.Drawing.Size(208, 63);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Busqueda";
             // 
             // txtBusqueda
             // 
+            this.txtBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBusqueda.Location = new System.Drawing.Point(6, 24);
             this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(172, 20);
+            this.txtBusqueda.Size = new System.Drawing.Size(196, 20);
             this.txtBusqueda.TabIndex = 0;
             this.txtBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqueda_KeyPress);
             // 
@@ -211,6 +170,10 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnSalir2);
+            this.tabPage2.Controls.Add(this.btnEliminar2);
+            this.tabPage2.Controls.Add(this.btnNuevo2);
+            this.tabPage2.Controls.Add(this.btnActualizar2);
             this.tabPage2.Controls.Add(this.btnGuardar2);
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -267,6 +230,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(92, 115);
+            this.txtNombre.MaxLength = 50;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(158, 20);
             this.txtNombre.TabIndex = 2;
@@ -274,21 +238,127 @@
             // txtId
             // 
             this.txtId.Location = new System.Drawing.Point(92, 82);
+            this.txtId.MaxLength = 15;
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(158, 20);
             this.txtId.TabIndex = 1;
             this.txtId.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackgroundImage = global::celebi.Properties.Resources.search2;
+            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBuscar.Location = new System.Drawing.Point(418, 17);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(45, 44);
+            this.btnBuscar.TabIndex = 3;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
+            // 
+            // btnSalir2
+            // 
+            this.btnSalir2.BackgroundImage = global::celebi.Properties.Resources.back;
+            this.btnSalir2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSalir2.Location = new System.Drawing.Point(411, 6);
+            this.btnSalir2.Name = "btnSalir2";
+            this.btnSalir2.Size = new System.Drawing.Size(54, 52);
+            this.btnSalir2.TabIndex = 5;
+            this.btnSalir2.UseVisualStyleBackColor = true;
+            this.btnSalir2.Click += new System.EventHandler(this.BtnSalir2_Click);
+            // 
+            // btnEliminar2
+            // 
+            this.btnEliminar2.BackgroundImage = global::celebi.Properties.Resources.delete;
+            this.btnEliminar2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEliminar2.Location = new System.Drawing.Point(424, 202);
+            this.btnEliminar2.Name = "btnEliminar2";
+            this.btnEliminar2.Size = new System.Drawing.Size(41, 41);
+            this.btnEliminar2.TabIndex = 4;
+            this.btnEliminar2.UseVisualStyleBackColor = true;
+            this.btnEliminar2.Click += new System.EventHandler(this.BtnEliminar2_Click);
+            // 
+            // btnNuevo2
+            // 
+            this.btnNuevo2.BackgroundImage = global::celebi.Properties.Resources.new_2;
+            this.btnNuevo2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNuevo2.Location = new System.Drawing.Point(307, 202);
+            this.btnNuevo2.Name = "btnNuevo2";
+            this.btnNuevo2.Size = new System.Drawing.Size(41, 41);
+            this.btnNuevo2.TabIndex = 3;
+            this.btnNuevo2.UseVisualStyleBackColor = true;
+            this.btnNuevo2.Click += new System.EventHandler(this.BtnNuevo2_Click);
+            // 
+            // btnActualizar2
+            // 
+            this.btnActualizar2.BackgroundImage = global::celebi.Properties.Resources.update;
+            this.btnActualizar2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnActualizar2.Location = new System.Drawing.Point(367, 202);
+            this.btnActualizar2.Name = "btnActualizar2";
+            this.btnActualizar2.Size = new System.Drawing.Size(41, 41);
+            this.btnActualizar2.TabIndex = 2;
+            this.btnActualizar2.UseVisualStyleBackColor = true;
+            this.btnActualizar2.Click += new System.EventHandler(this.BtnActualizar2_Click);
+            // 
             // btnGuardar2
             // 
             this.btnGuardar2.BackgroundImage = global::celebi.Properties.Resources.save;
             this.btnGuardar2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnGuardar2.Location = new System.Drawing.Point(348, 84);
+            this.btnGuardar2.Location = new System.Drawing.Point(334, 73);
             this.btnGuardar2.Name = "btnGuardar2";
-            this.btnGuardar2.Size = new System.Drawing.Size(88, 86);
+            this.btnGuardar2.Size = new System.Drawing.Size(105, 108);
             this.btnGuardar2.TabIndex = 1;
             this.btnGuardar2.UseVisualStyleBackColor = true;
             this.btnGuardar2.Click += new System.EventHandler(this.BtnGuardar2_Click);
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNuevo.Image = global::celebi.Properties.Resources.new_2;
+            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(34, 34);
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnGuardar.Image = global::celebi.Properties.Resources.save;
+            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(34, 34);
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnActualizar.Image = global::celebi.Properties.Resources.update;
+            this.btnActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(34, 34);
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEliminar.Image = global::celebi.Properties.Resources.delete;
+            this.btnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(34, 34);
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSalir.Image = global::celebi.Properties.Resources.back;
+            this.btnSalir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(34, 34);
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
             // FrmDepartamentos
             // 
@@ -297,8 +367,10 @@
             this.ClientSize = new System.Drawing.Size(481, 314);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmDepartamentos";
-            this.Text = "FrmDepartamentos";
+            this.Text = "Mant. - Departamentos";
             this.Load += new System.EventHandler(this.FrmDepartamentos_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -341,5 +413,10 @@
         private System.Windows.Forms.CheckBox chkActivo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnGuardar2;
+        private System.Windows.Forms.Button btnActualizar2;
+        private System.Windows.Forms.Button btnEliminar2;
+        private System.Windows.Forms.Button btnNuevo2;
+        private System.Windows.Forms.Button btnSalir2;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }

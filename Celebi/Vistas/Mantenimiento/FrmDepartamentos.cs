@@ -222,13 +222,6 @@ namespace celebi.Vistas.Mantenimiento
             }
         }
 
-
-
-        private void BtnGuardar2_Click(object sender, EventArgs e)
-        {
-            btnGuardar.PerformClick();
-        }
-
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             string mensaje = "Debe seleccionar un registro válido antes de eliminar." +
@@ -276,6 +269,37 @@ namespace celebi.Vistas.Mantenimiento
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnGuardar2_Click(object sender, EventArgs e)
+        {
+            btnGuardar.PerformClick();
+        }
+
+        private void BtnActualizar2_Click(object sender, EventArgs e)
+        {
+            btnActualizar.PerformClick();
+        }
+
+        private void BtnNuevo2_Click(object sender, EventArgs e)
+        {
+            btnNuevo.PerformClick();
+        }
+
+        private void BtnEliminar2_Click(object sender, EventArgs e)
+        {
+            btnEliminar.PerformClick();
+        }
+
+        private void BtnSalir2_Click(object sender, EventArgs e)
+        {
+            btnSalir.PerformClick();
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            var txtBusquedaEA = new KeyPressEventArgs('\r');
+            txtBusqueda_KeyPress(null, txtBusquedaEA);
         }
     }
 }

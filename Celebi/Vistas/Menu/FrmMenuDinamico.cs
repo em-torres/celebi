@@ -92,22 +92,17 @@ namespace celebi.Vistas.Menu
                 llamar.MdiParent = this;
                 llamar.Show();
             }
-            else if (item.ToString() == "Alumnos")
+            else if (item.ToString() == "Compañías / Fabricantes")
             {
-                //Form1 llamar = null;
-                //llamar = Form1.Instance();
-                //llamar.MdiParent = this;
-                //llamar.Show();
+                FrmCompanias llamar = null;
+                llamar = FrmCompanias.Instance();
+                llamar.MdiParent = this;
+                llamar.Show();
             }
             else if (item.ToString() == "Salir")
             {
                 Close();
             }
-        }
-
-        private void ToolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
         }
 
         private void ToolStripButton2_Click(object sender, EventArgs e)
@@ -119,6 +114,19 @@ namespace celebi.Vistas.Menu
         {
             FrmDepartamentos llamar = null;
             llamar = FrmDepartamentos.Instance();
+            llamar.MdiParent = this;
+            llamar.Show();
+        }
+
+        private void MenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void ToolStripButton3_Click(object sender, EventArgs e)
+        {
+            FrmCompanias llamar = null;
+            llamar = FrmCompanias.Instance();
             llamar.MdiParent = this;
             llamar.Show();
         }

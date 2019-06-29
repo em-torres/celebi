@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class DepartamentoDAL
+    public class CompaniaDAL
     {
         #region "Variables (Clases) de conexión"
         private SqlCommand ComandoSQL;
@@ -21,14 +21,14 @@ namespace Datos
         private Acceso AccesoDatos;
 
         // Constructor
-        public DepartamentoDAL()
+        public CompaniaDAL()
         {
             AccesoDatos = new Acceso();
         }
 
-        public DataTable ObtenerDepartamentos()
+        public DataTable ObtenerCompanias()
         {
-            string query = "SELECT * FROM Departamentos";
+            string query = "SELECT * FROM Companias";
             using (AdaptadorSQL = new SqlDataAdapter(query, AccesoDatos.ObtenerConexion()))
             {
                 Dt = new DataTable();
@@ -38,7 +38,7 @@ namespace Datos
             return Dt;
         }
 
-        public string InsertarDepartamento(Departamentos Departamento)
+        public string InsertarCompania(Companias Compania)
         {
             string respuesta = "";
 
@@ -47,12 +47,19 @@ namespace Datos
             {
                 ComandoSQL.Connection = AccesoDatos.ObtenerConexion();
                 ComandoSQL.CommandType = CommandType.StoredProcedure;
-                ComandoSQL.CommandText = "proc_DEPARTAMENTOSInsertar";
+                ComandoSQL.CommandText = "proc_CompaniaSInsertar";
                 try
                 {
-                    ComandoSQL.Parameters.AddWithValue("@IdDepto", Departamento.IdDepto);
-                    ComandoSQL.Parameters.AddWithValue("@NombDepto", Departamento.NombDepto);
-                    ComandoSQL.Parameters.AddWithValue("@Activo", Departamento.Activo);
+                    ComandoSQL.Parameters.AddWithValue("@IdComp", Compania.IdComp);
+                    ComandoSQL.Parameters.AddWithValue("@Rnc", Compania.Rnc);
+                    ComandoSQL.Parameters.AddWithValue("@NombComp", Compania.NombComp);
+                    ComandoSQL.Parameters.AddWithValue("@DirComp", Compania.DirComp);
+                    ComandoSQL.Parameters.AddWithValue("@TelComp", Compania.TelComp);
+                    ComandoSQL.Parameters.AddWithValue("@CorrElecComp", Compania.CorrElecComp);
+                    ComandoSQL.Parameters.AddWithValue("@ContactoComp", Compania.ContactoComp);
+                    ComandoSQL.Parameters.AddWithValue("@TelContComp", Compania.TelContComp);
+                    ComandoSQL.Parameters.AddWithValue("@CorContComp", Compania.CorContComp);
+                    ComandoSQL.Parameters.AddWithValue("@Activo", Compania.Activo);
 
                     //Ejecutar Comando
                     ComandoSQL.ExecuteNonQuery();
@@ -76,17 +83,17 @@ namespace Datos
             return respuesta;
         }
 
-        public void EliminarDepartamento(Departamentos Departamento)
+        public void EliminarCompania(Companias Compania)
         {
             AccesoDatos.ObtenerConexion().Open();
             using (ComandoSQL = new SqlCommand())
             {
                 ComandoSQL.Connection = AccesoDatos.ObtenerConexion();
                 ComandoSQL.CommandType = CommandType.StoredProcedure;
-                ComandoSQL.CommandText = "proc_DEPARTAMENTOSEliminar";
+                ComandoSQL.CommandText = "proc_CompaniaSEliminar";
                 try
                 {
-                    ComandoSQL.Parameters.AddWithValue("@IdDepto", Departamento.IdDepto);
+                    ComandoSQL.Parameters.AddWithValue("@IdComp", Compania.IdComp);
 
                     //Ejecutar Comando
                     ComandoSQL.ExecuteNonQuery();
@@ -103,19 +110,26 @@ namespace Datos
 
         }
 
-        public void ActualizarDepartamento(Departamentos Departamento)
+        public void ActualizarCompania(Companias Compania)
         {
             AccesoDatos.ObtenerConexion().Open();
             using (ComandoSQL = new SqlCommand())
             {
                 ComandoSQL.Connection = AccesoDatos.ObtenerConexion();
                 ComandoSQL.CommandType = CommandType.StoredProcedure;
-                ComandoSQL.CommandText = "proc_DEPARTAMENTOSActualizar";
+                ComandoSQL.CommandText = "proc_CompaniaSActualizar";
                 try
                 {
-                    ComandoSQL.Parameters.AddWithValue("@IdDepto", Departamento.IdDepto);
-                    ComandoSQL.Parameters.AddWithValue("@NombDepto", Departamento.NombDepto);
-                    ComandoSQL.Parameters.AddWithValue("@Activo", Departamento.Activo);
+                    ComandoSQL.Parameters.AddWithValue("@IdComp", Compania.IdComp);
+                    ComandoSQL.Parameters.AddWithValue("@Rnc", Compania.Rnc);
+                    ComandoSQL.Parameters.AddWithValue("@NombComp", Compania.NombComp);
+                    ComandoSQL.Parameters.AddWithValue("@DirComp", Compania.DirComp);
+                    ComandoSQL.Parameters.AddWithValue("@TelComp", Compania.TelComp);
+                    ComandoSQL.Parameters.AddWithValue("@CorrElecComp", Compania.CorrElecComp);
+                    ComandoSQL.Parameters.AddWithValue("@ContactoComp", Compania.ContactoComp);
+                    ComandoSQL.Parameters.AddWithValue("@TelContComp", Compania.TelContComp);
+                    ComandoSQL.Parameters.AddWithValue("@CorContComp", Compania.CorContComp);
+                    ComandoSQL.Parameters.AddWithValue("@Activo", Compania.Activo);
 
                     //Ejecutar Comando
                     ComandoSQL.ExecuteNonQuery();
@@ -131,18 +145,18 @@ namespace Datos
             }
         }
 
-        public DataTable BusquedaDepartamento(string parametro, string opcion)
+        public DataTable BusquedaCompania(string parametro, string opcion)
         {
             AccesoDatos.ObtenerConexion().Open();
             string query = string.Empty;
 
             if (opcion.Equals("Nombre"))
             {
-                query = "SELECT * FROM Departamentos WHERE NombDepto LIKE @param";
+                query = "SELECT * FROM Companias WHERE NombComp LIKE @param";
             }
             else if (opcion.Equals("Id"))
             {
-                query = "SELECT * FROM Departamentos WHERE IdDepto LIKE @param";
+                query = "SELECT * FROM Companias WHERE ContactoComp LIKE @param";
             }
 
             using (ComandoSQL = new SqlCommand())
