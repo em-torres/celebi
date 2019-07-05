@@ -154,7 +154,7 @@ namespace Datos
             {
                 query = "SELECT * FROM Companias WHERE NombComp LIKE @param";
             }
-            else if (opcion.Equals("Id"))
+            else if (opcion.Equals("Contacto"))
             {
                 query = "SELECT * FROM Companias WHERE ContactoComp LIKE @param";
             }

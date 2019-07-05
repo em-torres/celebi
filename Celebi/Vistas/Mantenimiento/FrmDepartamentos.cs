@@ -196,7 +196,7 @@ namespace celebi.Vistas.Mantenimiento
 
                 if (txtId.Text == "")
                 {
-                    MessageBox.Show(mensaje, "Error de eliminación",
+                    MessageBox.Show(mensaje, "Error de Actualización",
                       MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     tabControl1.SelectedIndex = 0;
                 }
