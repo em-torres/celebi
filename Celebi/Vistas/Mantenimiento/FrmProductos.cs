@@ -12,37 +12,37 @@ using System.Windows.Forms;
 
 namespace celebi.Vistas.Mantenimiento
 {
-    public partial class FrmCompanias : Form
+    public partial class FrmProductos : Form
     {
-        private static FrmCompanias frmInstance = null;
+        private static FrmProductos frmInstance = null;
 
         private int ID;
 
-        public static FrmCompanias Instance()
+        public static FrmProductos Instance()
         {
             if (((frmInstance == null) || (frmInstance.IsDisposed == true)))
             {
-                frmInstance = new FrmCompanias();
+                frmInstance = new FrmProductos();
             }
             frmInstance.BringToFront();
             return frmInstance;
         }
 
-        public FrmCompanias()
+        public FrmProductos()
         {
             InitializeComponent();
         }
 
-        private void FrmCompanias_Load(object sender, EventArgs e)
+        private void FrmProductos_Load(object sender, EventArgs e)
         {
             rbNombre.Checked = true;
-            LlenarGridCompania();
+            LlenarGridProducto();
         }
 
-        public void LlenarGridCompania()
+        public void LlenarGridProducto()
         {
-            CompaniaBL cli = new CompaniaBL();
-            dgvComp.DataSource = cli.LlenarCompanias();
+            ProductoBL cli = new ProductoBL();
+            dgvProd.DataSource = cli.LlenarProductos();
 
             CambiarTextoColumnasDG();
             CambiarNombreColumnasDG();
@@ -50,62 +50,52 @@ namespace celebi.Vistas.Mantenimiento
 
         public void CambiarTextoColumnasDG()
         {
-            dgvComp.Columns[0].HeaderText = "Id";
-            dgvComp.Columns[1].HeaderText = "Rnc";
-            dgvComp.Columns[2].HeaderText = "Compañía";
-            dgvComp.Columns[3].HeaderText = "Dirección";
-            dgvComp.Columns[4].HeaderText = "Teléfono";
-            dgvComp.Columns[5].HeaderText = "Email Comp";
-            dgvComp.Columns[6].HeaderText = "Contacto";
-            dgvComp.Columns[7].HeaderText = "Tel Contacto";
-            dgvComp.Columns[8].HeaderText = "Email Contacto";
+            dgvProd.Columns[0].HeaderText = "Id";
+            dgvProd.Columns[1].HeaderText = "Producto";
+            dgvProd.Columns[2].HeaderText = "Descripción";
+            dgvProd.Columns[3].HeaderText = "Costo";
+            dgvProd.Columns[4].HeaderText = "Precio";
         }
 
         public void CambiarNombreColumnasDG()
         {
-            dgvComp.Columns[0].Name = "Id";
-            dgvComp.Columns[1].Name = "Rnc";
-            dgvComp.Columns[2].Name = "Compañía";
-            dgvComp.Columns[3].Name = "Dirección";
-            dgvComp.Columns[4].Name = "Teléfono";
-            dgvComp.Columns[5].Name = "Email Comp";
-            dgvComp.Columns[6].Name = "Contacto";
-            dgvComp.Columns[7].Name = "Tel Contacto";
-            dgvComp.Columns[8].Name = "Email Contacto";
+            dgvProd.Columns[0].Name = "Id";
+            dgvProd.Columns[1].Name = "Producto";
+            dgvProd.Columns[2].Name = "Descripción";
+            dgvProd.Columns[3].Name = "Costo";
+            dgvProd.Columns[4].Name = "Precio";
         }
 
-        private void DgvComp_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvProd_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            PaginarCompanias();
+            PaginarProductos();
             tabControl1.SelectedIndex = 1;
         }
 
-        public void PaginarCompanias()
+        public void PaginarProductos()
         {
-            int fila = dgvComp.CurrentRow.Index;
+            int fila = dgvProd.CurrentRow.Index;
 
             try
             {
-                ID = Int32.Parse(dgvComp.Rows[fila].Cells["Id"].Value.ToString());
-                txtRnc.Text = dgvComp.Rows[fila].Cells["Rnc"].Value.ToString();
-                txtNombre.Text = dgvComp.Rows[fila].Cells["Compañía"].Value.ToString();
-                txtDireccion.Text = dgvComp.Rows[fila].Cells["Dirección"].Value.ToString();
-                txtTelComp.Text = dgvComp.Rows[fila].Cells["Teléfono"].Value.ToString();
-                txtEmailComp.Text = dgvComp.Rows[fila].Cells["Email Comp"].Value.ToString();
-                txtContacto.Text = dgvComp.Rows[fila].Cells["Contacto"].Value.ToString();
-                txtTelContacto.Text = dgvComp.Rows[fila].Cells["Tel Contacto"].Value.ToString();
-                txtEmailContacto.Text = dgvComp.Rows[fila].Cells["Email Contacto"].Value.ToString();
-                chkActivo.Checked = Convert.ToBoolean(dgvComp.Rows[fila].Cells["Activo"].Value.ToString());
+                ID = Int32.Parse(dgvProd.Rows[fila].Cells["Id"].Value.ToString());
+                txtProducto.Text = dgvProd.Rows[fila].Cells["Producto"].Value.ToString();
+                txtDescripcion.Text = dgvProd.Rows[fila].Cells["Descripción"].Value.ToString();
+                txtCosto.Text = dgvProd.Rows[fila].Cells["Costo"].Value.ToString();
+                txtPrecio.Text = dgvProd.Rows[fila].Cells["Precio"].Value.ToString();
+                chkActivo.Checked = Convert.ToBoolean(dgvProd.Rows[fila].Cells["Activo"].Value.ToString());
             }
             catch (Exception) { throw; }
         }
 
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-            Limpiar(txtRnc, txtNombre, txtDireccion, txtTelComp, txtEmailComp, txtContacto, txtTelContacto, txtEmailContacto);
+            Limpiar(txtProducto, txtDescripcion, txtCosto, txtPrecio);
             chkActivo.Enabled = true;
             chkActivo.Checked = false;
-            txtRnc.Focus();
+            txtPrecio.Text = "0.00";
+            txtCosto.Text = "0.00";
+            txtProducto.Focus();
         }
 
         public void Limpiar(params TextBox[] text)
@@ -118,7 +108,7 @@ namespace celebi.Vistas.Mantenimiento
             ID = 0;
         }
 
-        private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -126,14 +116,14 @@ namespace celebi.Vistas.Mantenimiento
                 {
                     e.Handled = true;
 
-                    CompaniaBL busqueda = new CompaniaBL();
+                    ProductoBL busqueda = new ProductoBL();
                     if (rbNombre.Checked == true)
                     {
-                        dgvComp.DataSource = busqueda.BusquedaCompania(txtBusqueda.Text, rbNombre.Text);
+                        dgvProd.DataSource = busqueda.BusquedaProducto(txtBusqueda.Text, rbNombre.Text);
                     }
-                    else if (rbContacto.Checked == true)
+                    else if (rbPrecio.Checked == true)
                     {
-                        dgvComp.DataSource = busqueda.BusquedaCompania(txtBusqueda.Text, rbContacto.Text);
+                        dgvProd.DataSource = busqueda.BusquedaProducto(txtBusqueda.Text, rbPrecio.Text);
                     }
                 }
             }
@@ -143,6 +133,17 @@ namespace celebi.Vistas.Mantenimiento
             }
         }
 
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            var txtBusquedaEA = new KeyPressEventArgs('\r');
+            TxtBusqueda_KeyPress(null, txtBusquedaEA);
+        }
+
+        private void TxtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (validar())
@@ -150,26 +151,21 @@ namespace celebi.Vistas.Mantenimiento
                 string respuesta;
                 string mensaje = "Registro agregado con éxito.";
 
-                CompaniaBL cli = new CompaniaBL();
-                Companias entidad = new Companias();
+                ProductoBL cli = new ProductoBL();
+                Productos entidad = new Productos();
 
-                if (txtNombre.Text == string.Empty)
-                    txtNombre.Text = null;
-                if (txtDireccion.Text == string.Empty)
-                    txtDireccion.Text = null;
-                if (txtTelComp.Text == string.Empty)
-                    txtTelComp.Text = null;
-                if (txtEmailComp.Text == string.Empty)
-                    txtEmailComp.Text = null;
-                if (txtContacto.Text == string.Empty)
-                    txtContacto.Text = null;
-                if (txtTelContacto.Text == string.Empty)
-                    txtTelContacto.Text = null;
-                if (txtEmailContacto.Text == string.Empty)
-                    txtEmailContacto.Text = null;
+                if (txtProducto.Text == string.Empty)
+                    txtProducto.Text = null;
+                if (txtDescripcion.Text == string.Empty)
+                    txtDescripcion.Text = null;
+                if (txtCosto.Text == string.Empty)
+                    txtCosto.Text = "0.00";
+                if (txtPrecio.Text == string.Empty)
+                    txtPrecio.Text = "0.00";
 
-                if (ID > 0) {
-                    entidad.IdComp = ID;
+                if (ID > 0)
+                {
+                    entidad.IdProd = ID;
 
                     mensaje = "Este ID ya se encuentra registrado. Favor cambiarlo o " +
                             "hacer click en Actualizar si desea cambiar el registro. Gracias.";
@@ -177,17 +173,13 @@ namespace celebi.Vistas.Mantenimiento
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                entidad.Rnc = txtRnc.Text;
-                entidad.NombComp = txtNombre.Text;
-                entidad.DirComp = txtDireccion.Text;
-                entidad.TelComp = txtTelComp.Text;
-                entidad.CorrElecComp = txtEmailComp.Text;
-                entidad.ContactoComp = txtContacto.Text;
-                entidad.TelContComp = txtTelContacto.Text;
-                entidad.CorContComp = txtEmailContacto.Text;
+                entidad.NombProd = txtProducto.Text;
+                entidad.DescProd = txtDescripcion.Text;
+                entidad.Precio = float.Parse(txtPrecio.Text);
+                entidad.Costo = float.Parse(txtCosto.Text);
                 entidad.Activo = chkActivo.Checked;
 
-                respuesta = cli.RegCompania(entidad);
+                respuesta = cli.RegProducto(entidad);
 
                 switch (respuesta)
                 {
@@ -196,7 +188,7 @@ namespace celebi.Vistas.Mantenimiento
                             MessageBoxButtons.OK, MessageBoxIcon.Information
                         );
                         btnNuevo.PerformClick();
-                        LlenarGridCompania();
+                        LlenarGridProducto();
                         tabControl1.SelectedIndex = 0;
                         break;
 
@@ -224,31 +216,16 @@ namespace celebi.Vistas.Mantenimiento
                     MessageBoxIcon.Error);
             }
         }
+
         public bool validar()
         {
             bool valor = false;
 
-            if (!string.IsNullOrWhiteSpace(txtNombre.Text) && !string.IsNullOrWhiteSpace(txtDireccion.Text)
-                )
+            if (!string.IsNullOrWhiteSpace(txtProducto.Text))
             {
                 valor = true;
             }
             return valor;
-        }
-
-        private void Label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GroupBox4_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void BtnActualizar_Click(object sender, EventArgs e)
@@ -258,8 +235,17 @@ namespace celebi.Vistas.Mantenimiento
                     "desea actualizar y vuelva a intentarlo.";
             try
             {
-                Companias entidad = new Companias();
-                CompaniaBL actualizar = new CompaniaBL();
+                Productos entidad = new Productos();
+                ProductoBL actualizar = new ProductoBL();
+
+                if (txtProducto.Text == string.Empty)
+                    txtProducto.Text = null;
+                if (txtDescripcion.Text == string.Empty)
+                    txtDescripcion.Text = null;
+                if (txtCosto.Text == string.Empty)
+                    txtCosto.Text = "0.00";
+                if (txtPrecio.Text == string.Empty)
+                    txtPrecio.Text = "0.00";
 
                 if (ID < 1)
                 {
@@ -270,20 +256,16 @@ namespace celebi.Vistas.Mantenimiento
                 else
                 {
                     mensaje = "Registro Actualizado.";
-                    entidad.IdComp = ID;
-                    entidad.Rnc = txtRnc.Text;
-                    entidad.NombComp = txtNombre.Text;
-                    entidad.DirComp = txtDireccion.Text;
-                    entidad.TelComp = txtTelComp.Text;
-                    entidad.CorrElecComp = txtEmailComp.Text;
-                    entidad.ContactoComp = txtContacto.Text;
-                    entidad.TelContComp = txtTelContacto.Text;
-                    entidad.CorContComp = txtEmailContacto.Text;
+                    entidad.IdProd = ID;
+                    entidad.NombProd = txtProducto.Text;
+                    entidad.DescProd = txtDescripcion.Text;
+                    entidad.Precio = float.Parse(txtPrecio.Text);
+                    entidad.Costo = float.Parse(txtCosto.Text);
                     entidad.Activo = chkActivo.Checked;
 
-                    actualizar.ActualizarCompania(entidad);
+                    actualizar.ActualizarProducto(entidad);
 
-                    LlenarGridCompania();
+                    LlenarGridProducto();
                     MessageBox.Show(mensaje, "Actualización",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnNuevo.PerformClick();
@@ -312,7 +294,7 @@ namespace celebi.Vistas.Mantenimiento
                 else
                 {
                     mensaje = "Realmente desea eliminar el registro de nombre: " +
-                        txtNombre.Text + "?";
+                        txtProducto.Text + "?";
                     DialogResult resultado = MessageBox.Show(mensaje, "¿Desea eliminar?",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                         MessageBoxDefaultButton.Button2);
@@ -320,12 +302,12 @@ namespace celebi.Vistas.Mantenimiento
                     if (resultado == DialogResult.Yes)
                     {
                         mensaje = "Registro Eliminado.";
-                        Companias entidad = new Companias();
-                        CompaniaBL eliminar = new CompaniaBL();
-                        entidad.IdComp = ID;
-                        eliminar.EliminarCompania(entidad);
+                        Productos entidad = new Productos();
+                        ProductoBL eliminar = new ProductoBL();
+                        entidad.IdProd = ID;
+                        eliminar.EliminarProducto(entidad);
 
-                        LlenarGridCompania();
+                        LlenarGridProducto();
                         btnNuevo.PerformClick();
                         tabControl1.SelectedIndex = 0;
 
@@ -368,12 +350,6 @@ namespace celebi.Vistas.Mantenimiento
         private void BtnSalir2_Click(object sender, EventArgs e)
         {
             btnSalir.PerformClick();
-        }
-
-        private void BtnBuscar_Click(object sender, EventArgs e)
-        {
-            var txtBusquedaEA = new KeyPressEventArgs('\r');
-            txtBusqueda_KeyPress(null, txtBusquedaEA);
         }
     }
 }

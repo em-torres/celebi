@@ -44,6 +44,7 @@
     <Compile Include="CompaniaBL.cs" />
     <Compile Include="DepartamentoBL.cs" />
     <Compile Include="MenuBL.cs" />
+    <Compile Include="ProductoBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
