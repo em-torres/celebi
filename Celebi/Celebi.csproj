@@ -49,6 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CELEBI_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CELEBI_DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\FncForms.cs" />
     <Compile Include="Vistas\Login\FrmLogin.cs">
       <SubType>Form</SubType>
@@ -69,6 +74,12 @@
     </Compile>
     <Compile Include="Vistas\Mantenimiento\FrmDepartamentos.Designer.cs">
       <DependentUpon>FrmDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Mantenimiento\FrmEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Mantenimiento\FrmEmpleados.Designer.cs">
+      <DependentUpon>FrmEmpleados.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Mantenimiento\FrmProductos.cs">
       <SubType>Form</SubType>
@@ -101,12 +112,26 @@
     <EmbeddedResource Include="Vistas\Mantenimiento\FrmDepartamentos.resx">
       <DependentUpon>FrmDepartamentos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Mantenimiento\FrmEmpleados.resx">
+      <DependentUpon>FrmEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Mantenimiento\FrmProductos.resx">
       <DependentUpon>FrmProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Menu\FrmMenuDinamico.resx">
       <DependentUpon>FrmMenuDinamico.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="CELEBI_DataSet.xsc">
+      <DependentUpon>CELEBI_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CELEBI_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CELEBI_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CELEBI_DataSet.xss">
+      <DependentUpon>CELEBI_DataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -193,6 +218,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Business Flat_expanded_11 Partner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

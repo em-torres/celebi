@@ -93,6 +93,10 @@ namespace celebi.Vistas.Menu
             {
                 toolStripButton3.PerformClick();
             }
+            else if (item.ToString() == "Empleados")
+            {
+                toolStripButton5.PerformClick();
+            }
             else if (item.ToString() == "Productos")
             {
                 toolStripButton4.PerformClick();
@@ -116,11 +120,6 @@ namespace celebi.Vistas.Menu
             llamar.Show();
         }
 
-        private void MenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
         private void ToolStripButton3_Click(object sender, EventArgs e)
         {
             FrmCompanias llamar = null;
@@ -133,6 +132,14 @@ namespace celebi.Vistas.Menu
         {
             FrmProductos llamar = null;
             llamar = FrmProductos.Instance();
+            llamar.MdiParent = this;
+            llamar.Show();
+        }
+
+        private void ToolStripButton5_Click(object sender, EventArgs e)
+        {
+            FrmEmpleados llamar = null;
+            llamar = FrmEmpleados.Instance();
             llamar.MdiParent = this;
             llamar.Show();
         }

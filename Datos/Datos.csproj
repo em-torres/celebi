@@ -45,6 +45,7 @@
     <Compile Include="Acceso.cs" />
     <Compile Include="CompaniaDAL.cs" />
     <Compile Include="DepartamentoDAL.cs" />
+    <Compile Include="EmpleadoDAL.cs" />
     <Compile Include="MenuDAL.cs" />
     <Compile Include="ProductoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

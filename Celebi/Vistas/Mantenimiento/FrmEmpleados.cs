@@ -12,37 +12,47 @@ using System.Windows.Forms;
 
 namespace celebi.Vistas.Mantenimiento
 {
-    public partial class FrmProductos : Form
+    public partial class FrmEmpleados : Form
     {
-        private static FrmProductos frmInstance = null;
+        CELEBI_DataSet ds = new CELEBI_DataSet();
+        CELEBI_DataSetTableAdapters.DepartamentosTableAdapter consulta = new CELEBI_DataSetTableAdapters.DepartamentosTableAdapter();
+
+        private static FrmEmpleados frmInstance = null;
 
         private int ID;
 
-        public static FrmProductos Instance()
+        public static FrmEmpleados Instance()
         {
             if (((frmInstance == null) || (frmInstance.IsDisposed == true)))
             {
-                frmInstance = new FrmProductos();
+                frmInstance = new FrmEmpleados();
             }
             frmInstance.BringToFront();
             return frmInstance;
         }
 
-        public FrmProductos()
+        public FrmEmpleados()
         {
             InitializeComponent();
         }
 
-        private void FrmProductos_Load(object sender, EventArgs e)
+        private void FrmEmpleados_Load(object sender, EventArgs e)
         {
             rbNombre.Checked = true;
-            LlenarGridProducto();
+            LlenarGridEmpleado();
+
+            // Llena el ComboBox Departamentos
+            consulta.Fill(ds.Departamentos);
+            cbDepto.DataSource = ds.Departamentos;
+
+            cbDepto.DisplayMember = "NombDepto";
+            cbDepto.ValueMember = "IdDepto";
         }
 
-        public void LlenarGridProducto()
+        public void LlenarGridEmpleado()
         {
-            ProductoBL cli = new ProductoBL();
-            dgvProd.DataSource = cli.LlenarProductos();
+            EmpleadoBL cli = new EmpleadoBL();
+            dgvEmp.DataSource = cli.LlenarEmpleados();
 
             CambiarTextoColumnasDG();
             CambiarNombreColumnasDG();
@@ -50,52 +60,53 @@ namespace celebi.Vistas.Mantenimiento
 
         public void CambiarTextoColumnasDG()
         {
-            dgvProd.Columns[0].HeaderText = "Id";
-            dgvProd.Columns[1].HeaderText = "Producto";
-            dgvProd.Columns[2].HeaderText = "Descripción";
-            dgvProd.Columns[3].HeaderText = "Costo";
-            dgvProd.Columns[4].HeaderText = "Precio";
+            dgvEmp.Columns[0].HeaderText = "Id";
+            dgvEmp.Columns[1].HeaderText = "Nombre";
+            dgvEmp.Columns[2].HeaderText = "IdDepto";
+            dgvEmp.Columns[3].HeaderText = "Sueldo Inicial";
+            dgvEmp.Columns[4].HeaderText = "Sueldo Actual";
         }
 
         public void CambiarNombreColumnasDG()
         {
-            dgvProd.Columns[0].Name = "Id";
-            dgvProd.Columns[1].Name = "Producto";
-            dgvProd.Columns[2].Name = "Descripción";
-            dgvProd.Columns[3].Name = "Costo";
-            dgvProd.Columns[4].Name = "Precio";
+            dgvEmp.Columns[0].Name = "Id";
+            dgvEmp.Columns[1].Name = "Nombre";
+            dgvEmp.Columns[2].Name = "IdDepto";
+            dgvEmp.Columns[3].Name = "Sueldo Inicial";
+            dgvEmp.Columns[4].Name = "Sueldo Actual";
         }
 
-        private void dgvProd_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvEmp_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            PaginarProductos();
+            PaginarEmpleados();
             tabControl1.SelectedIndex = 1;
         }
 
-        public void PaginarProductos()
+        public void PaginarEmpleados()
         {
-            int fila = dgvProd.CurrentRow.Index;
+            int fila = dgvEmp.CurrentRow.Index;
 
             try
             {
-                ID = Int32.Parse(dgvProd.Rows[fila].Cells["Id"].Value.ToString());
-                txtProducto.Text = dgvProd.Rows[fila].Cells["Producto"].Value.ToString();
-                txtDescripcion.Text = dgvProd.Rows[fila].Cells["Descripción"].Value.ToString();
-                txtCosto.Text = dgvProd.Rows[fila].Cells["Costo"].Value.ToString();
-                txtPrecio.Text = dgvProd.Rows[fila].Cells["Precio"].Value.ToString();
-                chkActivo.Checked = Convert.ToBoolean(dgvProd.Rows[fila].Cells["Activo"].Value.ToString());
+                ID = Int32.Parse(dgvEmp.Rows[fila].Cells["Id"].Value.ToString());
+                txtEmpleado.Text = dgvEmp.Rows[fila].Cells["Nombre"].Value.ToString();
+                cbDepto.SelectedValue = dgvEmp.Rows[fila].Cells["IdDepto"].Value.ToString();
+                txtSueldoInic.Text = dgvEmp.Rows[fila].Cells["Sueldo Inicial"].Value.ToString();
+                txtSueldoAct.Text = dgvEmp.Rows[fila].Cells["Sueldo Actual"].Value.ToString();
+                chkActivo.Checked = Convert.ToBoolean(dgvEmp.Rows[fila].Cells["Activo"].Value.ToString());
             }
             catch (Exception) { throw; }
         }
 
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-            Limpiar(txtProducto, txtDescripcion, txtCosto, txtPrecio);
+            Limpiar(txtEmpleado, txtSueldoInic, txtSueldoAct);
+
             chkActivo.Enabled = true;
             chkActivo.Checked = false;
-            txtPrecio.Text = "0.00";
-            txtCosto.Text = "0.00";
-            txtProducto.Focus();
+            txtSueldoAct.Text = "0.00";
+            txtSueldoInic.Text = "0.00";
+            txtEmpleado.Focus();
         }
 
         public void Limpiar(params TextBox[] text)
@@ -116,14 +127,14 @@ namespace celebi.Vistas.Mantenimiento
                 {
                     e.Handled = true;
 
-                    ProductoBL busqueda = new ProductoBL();
+                    EmpleadoBL busqueda = new EmpleadoBL();
                     if (rbNombre.Checked == true)
                     {
-                        dgvProd.DataSource = busqueda.BusquedaProducto(txtBusqueda.Text, rbNombre.Text);
+                        dgvEmp.DataSource = busqueda.BusquedaEmpleado(txtBusqueda.Text, rbNombre.Text);
                     }
-                    else if (rbPrecio.Checked == true)
+                    else if (rbSalario.Checked == true)
                     {
-                        dgvProd.DataSource = busqueda.BusquedaProducto(txtBusqueda.Text, rbPrecio.Text);
+                        dgvEmp.DataSource = busqueda.BusquedaEmpleado(txtBusqueda.Text, rbSalario.Text);
                     }
                 }
             }
@@ -146,21 +157,21 @@ namespace celebi.Vistas.Mantenimiento
                 string respuesta;
                 string mensaje = "Registro agregado con éxito.";
 
-                ProductoBL cli = new ProductoBL();
-                Productos entidad = new Productos();
+                EmpleadoBL cli = new EmpleadoBL();
+                Empleados entidad = new Empleados();
 
-                if (txtProducto.Text == string.Empty)
-                    txtProducto.Text = null;
-                if (txtDescripcion.Text == string.Empty)
-                    txtDescripcion.Text = null;
-                if (txtCosto.Text == string.Empty)
-                    txtCosto.Text = "0.00";
-                if (txtPrecio.Text == string.Empty)
-                    txtPrecio.Text = "0.00";
+                if (txtEmpleado.Text == string.Empty)
+                    txtEmpleado.Text = null;
+                if (cbDepto.SelectedValue.ToString() == string.Empty)
+                    cbDepto.SelectedValue = null;
+                if (txtSueldoInic.Text == string.Empty)
+                    txtSueldoInic.Text = "0.00";
+                if (txtSueldoAct.Text == string.Empty)
+                    txtSueldoAct.Text = "0.00";
 
                 if (ID > 0)
                 {
-                    entidad.IdProd = ID;
+                    entidad.CodEmp = ID;
 
                     mensaje = "Este ID ya se encuentra registrado. Favor cambiarlo o " +
                             "hacer click en Actualizar si desea cambiar el registro. Gracias.";
@@ -168,13 +179,13 @@ namespace celebi.Vistas.Mantenimiento
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                entidad.NombProd = txtProducto.Text;
-                entidad.DescProd = txtDescripcion.Text;
-                entidad.Precio = float.Parse(txtPrecio.Text);
-                entidad.Costo = float.Parse(txtCosto.Text);
+                entidad.NombreEmp = txtEmpleado.Text;
+                entidad.DeptoId = cbDepto.SelectedValue.ToString();
+                entidad.SueldoInic = float.Parse(txtSueldoInic.Text);
+                entidad.SueldoAct = float.Parse(txtSueldoAct.Text);
                 entidad.Activo = chkActivo.Checked;
 
-                respuesta = cli.RegProducto(entidad);
+                respuesta = cli.RegEmpleado(entidad);
 
                 switch (respuesta)
                 {
@@ -183,7 +194,7 @@ namespace celebi.Vistas.Mantenimiento
                             MessageBoxButtons.OK, MessageBoxIcon.Information
                         );
                         btnNuevo.PerformClick();
-                        LlenarGridProducto();
+                        LlenarGridEmpleado();
                         tabControl1.SelectedIndex = 0;
                         break;
 
@@ -216,7 +227,7 @@ namespace celebi.Vistas.Mantenimiento
         {
             bool valor = false;
 
-            if (!string.IsNullOrWhiteSpace(txtProducto.Text))
+            if (!string.IsNullOrWhiteSpace(txtEmpleado.Text))
             {
                 valor = true;
             }
@@ -230,17 +241,17 @@ namespace celebi.Vistas.Mantenimiento
                     "desea actualizar y vuelva a intentarlo.";
             try
             {
-                Productos entidad = new Productos();
-                ProductoBL actualizar = new ProductoBL();
+                Empleados entidad = new Empleados();
+                EmpleadoBL actualizar = new EmpleadoBL();
 
-                if (txtProducto.Text == string.Empty)
-                    txtProducto.Text = null;
-                if (txtDescripcion.Text == string.Empty)
-                    txtDescripcion.Text = null;
-                if (txtCosto.Text == string.Empty)
-                    txtCosto.Text = "0.00";
-                if (txtPrecio.Text == string.Empty)
-                    txtPrecio.Text = "0.00";
+                if (txtEmpleado.Text == string.Empty)
+                    txtEmpleado.Text = null;
+                if (cbDepto.SelectedValue.ToString() == string.Empty)
+                    cbDepto.SelectedValue = null;
+                if (txtSueldoInic.Text == string.Empty)
+                    txtSueldoInic.Text = "0.00";
+                if (txtSueldoAct.Text == string.Empty)
+                    txtSueldoAct.Text = "0.00";
 
                 if (ID < 1)
                 {
@@ -251,16 +262,16 @@ namespace celebi.Vistas.Mantenimiento
                 else
                 {
                     mensaje = "Registro Actualizado.";
-                    entidad.IdProd = ID;
-                    entidad.NombProd = txtProducto.Text;
-                    entidad.DescProd = txtDescripcion.Text;
-                    entidad.Precio = float.Parse(txtPrecio.Text);
-                    entidad.Costo = float.Parse(txtCosto.Text);
+                    entidad.CodEmp = ID;
+                    entidad.NombreEmp = txtEmpleado.Text;
+                    entidad.DeptoId = cbDepto.SelectedValue.ToString();
+                    entidad.SueldoInic = float.Parse(txtSueldoInic.Text);
+                    entidad.SueldoAct = float.Parse(txtSueldoAct.Text);
                     entidad.Activo = chkActivo.Checked;
 
-                    actualizar.ActualizarProducto(entidad);
+                    actualizar.ActualizarEmpleado(entidad);
 
-                    LlenarGridProducto();
+                    LlenarGridEmpleado();
                     MessageBox.Show(mensaje, "Actualización",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnNuevo.PerformClick();
@@ -289,7 +300,7 @@ namespace celebi.Vistas.Mantenimiento
                 else
                 {
                     mensaje = "Realmente desea eliminar el registro de nombre: " +
-                        txtProducto.Text + "?";
+                        txtEmpleado.Text + "?";
                     DialogResult resultado = MessageBox.Show(mensaje, "¿Desea eliminar?",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                         MessageBoxDefaultButton.Button2);
@@ -297,12 +308,12 @@ namespace celebi.Vistas.Mantenimiento
                     if (resultado == DialogResult.Yes)
                     {
                         mensaje = "Registro Eliminado.";
-                        Productos entidad = new Productos();
-                        ProductoBL eliminar = new ProductoBL();
-                        entidad.IdProd = ID;
-                        eliminar.EliminarProducto(entidad);
+                        Empleados entidad = new Empleados();
+                        EmpleadoBL eliminar = new EmpleadoBL();
+                        entidad.CodEmp = ID;
+                        eliminar.EliminarEmpleado(entidad);
 
-                        LlenarGridProducto();
+                        LlenarGridEmpleado();
                         btnNuevo.PerformClick();
                         tabControl1.SelectedIndex = 0;
 
