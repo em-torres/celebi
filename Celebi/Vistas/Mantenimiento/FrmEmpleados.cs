@@ -42,7 +42,7 @@ namespace celebi.Vistas.Mantenimiento
             LlenarGridEmpleado();
 
             // Llena el ComboBox Departamentos
-            consulta.Fill(ds.Departamentos);
+            consulta.FillBy(ds.Departamentos);
             cbDepto.DataSource = ds.Departamentos;
 
             cbDepto.DisplayMember = "NombDepto";
@@ -162,12 +162,19 @@ namespace celebi.Vistas.Mantenimiento
 
                 if (txtEmpleado.Text == string.Empty)
                     txtEmpleado.Text = null;
-                if (cbDepto.SelectedValue.ToString() == string.Empty)
-                    cbDepto.SelectedValue = null;
                 if (txtSueldoInic.Text == string.Empty)
                     txtSueldoInic.Text = "0.00";
                 if (txtSueldoAct.Text == string.Empty)
                     txtSueldoAct.Text = "0.00";
+
+                if (cbDepto.SelectedValue.ToString() == string.Empty || cbDepto.SelectedValue.ToString() == "A")
+                {
+                    entidad.DeptoId = null;
+                }
+                else
+                {
+                    entidad.DeptoId = cbDepto.SelectedValue.ToString();
+                }
 
                 if (ID > 0)
                 {
@@ -180,7 +187,6 @@ namespace celebi.Vistas.Mantenimiento
                     return;
                 }
                 entidad.NombreEmp = txtEmpleado.Text;
-                entidad.DeptoId = cbDepto.SelectedValue.ToString();
                 entidad.SueldoInic = float.Parse(txtSueldoInic.Text);
                 entidad.SueldoAct = float.Parse(txtSueldoAct.Text);
                 entidad.Activo = chkActivo.Checked;
@@ -245,13 +251,20 @@ namespace celebi.Vistas.Mantenimiento
                 EmpleadoBL actualizar = new EmpleadoBL();
 
                 if (txtEmpleado.Text == string.Empty)
-                    txtEmpleado.Text = null;
-                if (cbDepto.SelectedValue.ToString() == string.Empty)
-                    cbDepto.SelectedValue = null;
+                    txtEmpleado.Text = null;    
                 if (txtSueldoInic.Text == string.Empty)
                     txtSueldoInic.Text = "0.00";
                 if (txtSueldoAct.Text == string.Empty)
                     txtSueldoAct.Text = "0.00";
+
+                if (cbDepto.SelectedValue.ToString() == string.Empty || cbDepto.SelectedValue.ToString() == "A")
+                {
+                    entidad.DeptoId = null;
+                }
+                else
+                {
+                    entidad.DeptoId = cbDepto.SelectedValue.ToString();
+                }
 
                 if (ID < 1)
                 {
@@ -264,7 +277,6 @@ namespace celebi.Vistas.Mantenimiento
                     mensaje = "Registro Actualizado.";
                     entidad.CodEmp = ID;
                     entidad.NombreEmp = txtEmpleado.Text;
-                    entidad.DeptoId = cbDepto.SelectedValue.ToString();
                     entidad.SueldoInic = float.Parse(txtSueldoInic.Text);
                     entidad.SueldoAct = float.Parse(txtSueldoAct.Text);
                     entidad.Activo = chkActivo.Checked;

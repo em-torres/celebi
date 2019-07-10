@@ -62,7 +62,16 @@ SELECT IdDepto, NombDepto, Activo FROM Departamentos WHERE (IdDepto = @IdDepto)<
               <Mapping SourceColumn="NombDepto" DataSetColumn="NombDepto" />
               <Mapping SourceColumn="Activo" DataSetColumn="Activo" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="Conectar (Settings)" DbObjectName="CELEBI.dbo.Departamentos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT IdDepto, NombDepto, Activo FROM dbo.Departamentos WHERE Activo = 'True' ORDER BY 1;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
         </Tables>
         <Sources />
@@ -72,7 +81,7 @@ SELECT IdDepto, NombDepto, Activo FROM Departamentos WHERE (IdDepto = @IdDepto)<
   <xs:element name="CELEBI_DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="CELEBI_DataSet" msprop:Generator_UserDSName="CELEBI_DataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Departamentos" msprop:Generator_TableClassName="DepartamentosDataTable" msprop:Generator_TableVarName="tableDepartamentos" msprop:Generator_TablePropName="Departamentos" msprop:Generator_RowDeletingName="DepartamentosRowDeleting" msprop:Generator_RowChangingName="DepartamentosRowChanging" msprop:Generator_RowEvHandlerName="DepartamentosRowChangeEventHandler" msprop:Generator_RowDeletedName="DepartamentosRowDeleted" msprop:Generator_UserTableName="Departamentos" msprop:Generator_RowChangedName="DepartamentosRowChanged" msprop:Generator_RowEvArgName="DepartamentosRowChangeEvent" msprop:Generator_RowClassName="DepartamentosRow">
+        <xs:element name="Departamentos" msprop:Generator_TableClassName="DepartamentosDataTable" msprop:Generator_TableVarName="tableDepartamentos" msprop:Generator_RowChangedName="DepartamentosRowChanged" msprop:Generator_TablePropName="Departamentos" msprop:Generator_RowDeletingName="DepartamentosRowDeleting" msprop:Generator_RowChangingName="DepartamentosRowChanging" msprop:Generator_RowEvHandlerName="DepartamentosRowChangeEventHandler" msprop:Generator_RowDeletedName="DepartamentosRowDeleted" msprop:Generator_RowClassName="DepartamentosRow" msprop:Generator_UserTableName="Departamentos" msprop:Generator_RowEvArgName="DepartamentosRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdDepto" msprop:Generator_ColumnVarNameInTable="columnIdDepto" msprop:Generator_ColumnPropNameInRow="IdDepto" msprop:Generator_ColumnPropNameInTable="IdDeptoColumn" msprop:Generator_UserColumnName="IdDepto">
