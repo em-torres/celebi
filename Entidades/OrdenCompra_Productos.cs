@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class OrdenCompra_Producto
+    public class OrdenCompra_Productos
     {
         public string IdOrdenCompra { get; set; }
         public int Cant { get; set; }

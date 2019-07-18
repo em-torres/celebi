@@ -44,8 +44,8 @@
     <Compile Include="Companias.cs" />
     <Compile Include="Departamentos.cs" />
     <Compile Include="Empleados.cs" />
-    <Compile Include="OrdenCompra.cs" />
-    <Compile Include="OrdenCompra_Producto.cs" />
+    <Compile Include="OrdenCompras.cs" />
+    <Compile Include="OrdenCompra_Productos.cs" />
     <Compile Include="Productos.cs" />
     <Compile Include="Set_Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

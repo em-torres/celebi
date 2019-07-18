@@ -1,4 +1,5 @@
 ﻿using Logica;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -136,6 +137,149 @@ namespace celebi.Vistas.OrdenCompra
         private void LblCostoNeto_TextChanged(object sender, EventArgs e)
         {
             sumarCostoTotal();
+        }
+
+        private void BtnNuevo_Click(object sender, EventArgs e)
+        {
+            Limpiar(txtId, txtFormaEntrega, txtCondicionPago, txtCostoEnvio);
+
+            chkActivo.Enabled = true;
+            chkActivo.Checked = false;
+            lblCostoNeto.Text = "0.00";
+            lblCostoTotal.Text = "0.00";
+            cbxProveedor.SelectedIndex = 0;
+            cbxSolicitante.SelectedIndex = 0;
+            txtId.Focus();
+        }
+
+        public void Limpiar(params TextBox[] text)
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                text[i].Clear();
+            }
+
+            ID = "";
+        }
+
+        private void TxtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == '\r')
+                {
+                    e.Handled = true;
+
+                    OrdenCompraBL busqueda = new OrdenCompraBL();
+                    if (rbOrdCompra.Checked == true)
+                    {
+                        dgvOrd.DataSource = busqueda.BusquedaOrdenCompra(txtBusqueda.Text, rbOrdCompra.Text);
+                    }
+                    else if (rbProveedor.Checked == true)
+                    {
+                        dgvOrd.DataSource = busqueda.BusquedaOrdenCompra(txtBusqueda.Text, rbProveedor.Text);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            var txtBusquedaEA = new KeyPressEventArgs('\r');
+            TxtBusqueda_KeyPress(null, txtBusquedaEA);
+        }
+
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {
+            if (validar())
+            {
+                string respuesta;
+                string mensaje = "Registro agregado con éxito.";
+
+                OrdenCompraBL cli = new OrdenCompraBL();
+                OrdenCompras entidad = new OrdenCompras();            
+
+                if (txtFormaEntrega.Text == string.Empty)
+                    txtFormaEntrega.Text = null;
+                if (txtCondicionPago.Text == string.Empty)
+                    txtCondicionPago.Text = null;
+                if (txtCostoEnvio.Text == string.Empty)
+                    txtCostoEnvio.Text = "0.00";
+                if (lblCostoNeto.Text == string.Empty)
+                    lblCostoNeto.Text = "0.00";
+                if (lblCostoTotal.Text == string.Empty)
+                    lblCostoTotal.Text = "0.00";
+
+                entidad.IdOrdenCompra = txtId.Text;
+                entidad.FechaSolicitud = dtpFechaSolicitud.Value.Date;
+                entidad.FormaEntrega = txtFormaEntrega.Text;
+                entidad.CondicionPago = txtCondicionPago.Text;
+                entidad.Proveedor = Int32.Parse(cbxProveedor.SelectedValue.ToString());
+                entidad.Solicitante = Int32.Parse(cbxSolicitante.SelectedValue.ToString());
+                entidad.CostoNeto = float.Parse(lblCostoNeto.Text);
+                entidad.CostoEnvio = float.Parse(txtCostoEnvio.Text);
+                entidad.CostoTotal = float.Parse(lblCostoTotal.Text);
+                entidad.Activo = chkActivo.Checked;
+
+                respuesta = cli.RegOrdenCompra(entidad);
+
+                switch (respuesta)
+                {
+                    case "exito":
+                        MessageBox.Show(mensaje, "Agregado",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information
+                        );
+                        btnNuevo.PerformClick();
+                        LlenarGridOrdenCompra();
+                        tabControl1.SelectedIndex = 0;
+                        break;
+
+                    case "existe":
+                        mensaje = "Este ID ya se encuentra registrado. Favor cambiarlo o " +
+                            "hacer click en Actualizar si desea cambiar el registro. Gracias.";
+                        MessageBox.Show(mensaje, "Error al Guardar",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error
+                        );
+                        break;
+
+                    default:
+                        MessageBox.Show(
+                            respuesta,
+                            "Error al Registrar",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Hay campos que son obligatorios y se encuentran vacios.", "Error de validación", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        public bool validar()
+        {
+            bool valor = false;
+
+            if (!string.IsNullOrWhiteSpace(txtId.Text))
+            {
+                valor = true;
+            }
+            if (cbxProveedor.SelectedValue.ToString() == string.Empty || Int32.Parse(cbxProveedor.SelectedValue.ToString()) < 2)
+            {
+                valor = false;
+            }
+            if (cbxSolicitante.SelectedValue.ToString() == string.Empty || Int32.Parse(cbxSolicitante.SelectedValue.ToString()) < 4)
+            {
+                valor = false;
+            }
+            return valor;
         }
     }
 }

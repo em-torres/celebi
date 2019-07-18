@@ -128,6 +128,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(45, 44);
             this.btnBuscar.TabIndex = 4;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // dgvOrd
             // 
@@ -158,6 +159,7 @@
             this.txtBusqueda.Name = "txtBusqueda";
             this.txtBusqueda.Size = new System.Drawing.Size(297, 20);
             this.txtBusqueda.TabIndex = 0;
+            this.txtBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBusqueda_KeyPress);
             // 
             // groupBox1
             // 
@@ -534,6 +536,7 @@
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(34, 34);
             this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
             // 
             // btnGuardar
             // 
@@ -543,6 +546,7 @@
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(34, 34);
             this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // btnActualizar
             // 

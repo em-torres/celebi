@@ -38,7 +38,7 @@ namespace Datos
             return Dt;
         }
 
-        public string InsertarOrdenCompra(OrdenCompra OrdenCompra)
+        public string InsertarOrdenCompra(OrdenCompras OrdenCompra)
         {
             string respuesta = "";
 
@@ -83,7 +83,7 @@ namespace Datos
             return respuesta;
         }
 
-        public void EliminarOrdenCompra(OrdenCompra OrdenCompra)
+        public void EliminarOrdenCompra(OrdenCompras OrdenCompra)
         {
             AccesoDatos.ObtenerConexion().Open();
             using (ComandoSQL = new SqlCommand())
@@ -110,7 +110,7 @@ namespace Datos
 
         }
 
-        public void ActualizarOrdenCompra(OrdenCompra OrdenCompra)
+        public void ActualizarOrdenCompra(OrdenCompras OrdenCompra)
         {
             AccesoDatos.ObtenerConexion().Open();
             using (ComandoSQL = new SqlCommand())
@@ -150,7 +150,7 @@ namespace Datos
             AccesoDatos.ObtenerConexion().Open();
             string query = string.Empty;
 
-            if (opcion.Equals("Id"))
+            if (opcion.Equals("Orden Compra"))
             {
                 query = "SELECT * FROM OrdenCompra WHERE IdOrdenCompra LIKE @param";
             }

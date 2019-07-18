@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class OrdenCompra
+    public class OrdenCompras
     {
         public string IdOrdenCompra { get; set; }
         public DateTime FechaSolicitud { get; set; }

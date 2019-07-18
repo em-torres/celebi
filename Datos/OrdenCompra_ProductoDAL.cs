@@ -38,7 +38,7 @@ namespace Datos
             return Dt;
         }
 
-        public string InsertarOrdenCompra_Producto(OrdenCompra_Producto OrdenCompra_Producto)
+        public string InsertarOrdenCompra_Producto(OrdenCompra_Productos OrdenCompra_Producto)
         {
             string respuesta = "";
 
@@ -78,7 +78,7 @@ namespace Datos
             return respuesta;
         }
 
-        public void EliminarOrdenCompra_Producto(OrdenCompra_Producto OrdenCompra_Producto)
+        public void EliminarOrdenCompra_Producto(OrdenCompra_Productos OrdenCompra_Producto)
         {
             AccesoDatos.ObtenerConexion().Open();
             using (ComandoSQL = new SqlCommand())
@@ -104,7 +104,7 @@ namespace Datos
             }
         }
 
-        public void ActualizarOrdenCompra_Producto(OrdenCompra_Producto OrdenCompra_Producto)
+        public void ActualizarOrdenCompra_Producto(OrdenCompra_Productos OrdenCompra_Producto)
         {
             AccesoDatos.ObtenerConexion().Open();
             using (ComandoSQL = new SqlCommand())

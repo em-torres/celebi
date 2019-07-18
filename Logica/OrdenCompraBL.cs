@@ -18,17 +18,17 @@ namespace Logica
             return cli.ObtenerOrdenCompra();
         }
 
-        public string RegOrdenCompra(OrdenCompra entidad)
+        public string RegOrdenCompra(OrdenCompras entidad)
         {
             return cli.InsertarOrdenCompra(entidad);
         }
 
-        public void EliminarOrdenCompra(OrdenCompra entidad)
+        public void EliminarOrdenCompra(OrdenCompras entidad)
         {
             cli.EliminarOrdenCompra(entidad);
         }
 
-        public void ActualizarOrdenCompra(OrdenCompra entidad)
+        public void ActualizarOrdenCompra(OrdenCompras entidad)
         {
             cli.ActualizarOrdenCompra(entidad);
         }
