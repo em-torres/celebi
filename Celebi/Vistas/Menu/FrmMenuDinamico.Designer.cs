@@ -99,7 +99,7 @@
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(52, 49);
-            this.toolStripButton5.Text = "toolStripButton5";
+            this.toolStripButton5.Text = "Empleados";
             this.toolStripButton5.Click += new System.EventHandler(this.ToolStripButton5_Click);
             // 
             // toolStripButton2

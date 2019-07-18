@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CELEBI_DataSet.cs">
+      <DependentUpon>CELEBI_DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CELEBI_DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,6 +96,19 @@
     <Compile Include="Vistas\Menu\FrmMenuDinamico.Designer.cs">
       <DependentUpon>FrmMenuDinamico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\OrdenCompra\FrmOrdenesDeCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\OrdenCompra\FrmOrdenesDeCompra.Designer.cs">
+      <DependentUpon>FrmOrdenesDeCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Reportes\FrmRepCompanias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Reportes\FrmRepCompanias.Designer.cs">
+      <DependentUpon>FrmRepCompanias.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Reportes\RepCompanias.rdlc" />
     <EmbeddedResource Include="Vistas\Login\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +136,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Menu\FrmMenuDinamico.resx">
       <DependentUpon>FrmMenuDinamico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\OrdenCompra\FrmOrdenesDeCompra.resx">
+      <DependentUpon>FrmOrdenesDeCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Reportes\FrmRepCompanias.resx">
+      <DependentUpon>FrmRepCompanias.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="CELEBI_DataSet.xsc">
       <DependentUpon>CELEBI_DataSet.xsd</DependentUpon>
