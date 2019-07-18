@@ -299,6 +299,7 @@
             this.btnNuevo2.TabIndex = 3;
             this.btnNuevo2.Tag = "Nuevo";
             this.btnNuevo2.UseVisualStyleBackColor = true;
+            this.btnNuevo2.Click += new System.EventHandler(this.BtnNuevo2_Click);
             // 
             // btnSalir2
             // 
@@ -310,6 +311,7 @@
             this.btnSalir2.TabIndex = 5;
             this.btnSalir2.Tag = "Salir";
             this.btnSalir2.UseVisualStyleBackColor = true;
+            this.btnSalir2.Click += new System.EventHandler(this.BtnSalir2_Click);
             // 
             // btnActualizar2
             // 
@@ -321,6 +323,7 @@
             this.btnActualizar2.TabIndex = 2;
             this.btnActualizar2.Tag = "Actualizar";
             this.btnActualizar2.UseVisualStyleBackColor = true;
+            this.btnActualizar2.Click += new System.EventHandler(this.BtnActualizar2_Click);
             // 
             // btnGuardar2
             // 
@@ -332,6 +335,7 @@
             this.btnGuardar2.TabIndex = 1;
             this.btnGuardar2.Tag = "Guardar";
             this.btnGuardar2.UseVisualStyleBackColor = true;
+            this.btnGuardar2.Click += new System.EventHandler(this.BtnGuardar2_Click);
             // 
             // btnEliminar2
             // 
@@ -343,6 +347,7 @@
             this.btnEliminar2.TabIndex = 4;
             this.btnEliminar2.Tag = "Borrar";
             this.btnEliminar2.UseVisualStyleBackColor = true;
+            this.btnEliminar2.Click += new System.EventHandler(this.BtnEliminar2_Click);
             // 
             // groupBox4
             // 
@@ -556,6 +561,7 @@
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(34, 34);
             this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
             // 
             // btnEliminar
             // 
@@ -565,6 +571,7 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(34, 34);
             this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // btnSalir
             // 
@@ -574,6 +581,7 @@
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(34, 34);
             this.btnSalir.Text = "Salir";
+            this.btnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
             // empleadosTableAdapter
             // 

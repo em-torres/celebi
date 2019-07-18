@@ -281,5 +281,135 @@ namespace celebi.Vistas.OrdenCompra
             }
             return valor;
         }
+
+        private void BtnActualizar_Click(object sender, EventArgs e)
+        {
+            string mensaje = "Debe seleccionar un registro válido antes de actualizar. " +
+                    "Por favor seleccione un registro en la pestaña de busqueda que " +
+                    "desea actualizar y vuelva a intentarlo.";
+            try
+            {
+                OrdenCompras entidad = new OrdenCompras();
+                OrdenCompraBL actualizar = new OrdenCompraBL();
+
+                if (txtFormaEntrega.Text == string.Empty)
+                    txtFormaEntrega.Text = null;
+                if (txtCondicionPago.Text == string.Empty)
+                    txtCondicionPago.Text = null;
+                if (txtCostoEnvio.Text == string.Empty)
+                    txtCostoEnvio.Text = "0.00";
+                if (lblCostoNeto.Text == string.Empty)
+                    lblCostoNeto.Text = "0.00";
+                if (lblCostoTotal.Text == string.Empty)
+                    lblCostoTotal.Text = "0.00";
+
+                if (!validar())
+                {
+                    MessageBox.Show(mensaje, "Error de Actualización",
+                      MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    tabControl1.SelectedIndex = 0;
+                }
+                else
+                {
+                    mensaje = "Registro Actualizado.";
+                    entidad.IdOrdenCompra = txtId.Text;
+                    entidad.FechaSolicitud = dtpFechaSolicitud.Value.Date;
+                    entidad.FormaEntrega = txtFormaEntrega.Text;
+                    entidad.CondicionPago = txtCondicionPago.Text;
+                    entidad.Proveedor = Int32.Parse(cbxProveedor.SelectedValue.ToString());
+                    entidad.Solicitante = Int32.Parse(cbxSolicitante.SelectedValue.ToString());
+                    entidad.CostoNeto = float.Parse(lblCostoNeto.Text);
+                    entidad.CostoEnvio = float.Parse(txtCostoEnvio.Text);
+                    entidad.CostoTotal = float.Parse(lblCostoTotal.Text);
+                    entidad.Activo = chkActivo.Checked;
+
+                    actualizar.ActualizarOrdenCompra(entidad);
+
+                    LlenarGridOrdenCompra();
+                    MessageBox.Show(mensaje, "Actualización",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnNuevo.PerformClick();
+                    tabControl1.SelectedIndex = 0;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            string mensaje = "Debe seleccionar un registro válido antes de eliminar." +
+                    " Por favor seleccione un registro en la pestaña de busqueda que" +
+                    "desea eliminar y vuelva a intentarlo.";
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtId.Text))
+                {
+                    MessageBox.Show(mensaje, "Error de eliminación",
+                      MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    tabControl1.SelectedIndex = 0;
+                }
+                else
+                {
+                    mensaje = "Realmente desea eliminar el registro de nombre: " +
+                        txtId.Text + "?";
+                    DialogResult resultado = MessageBox.Show(mensaje, "¿Desea eliminar?",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        mensaje = "Registro Eliminado.";
+                        OrdenCompras entidad = new OrdenCompras();
+                        OrdenCompraBL eliminar = new OrdenCompraBL();
+                        entidad.IdOrdenCompra = ID;
+                        eliminar.EliminarOrdenCompra(entidad);
+
+                        LlenarGridOrdenCompra();
+                        btnNuevo.PerformClick();
+                        tabControl1.SelectedIndex = 0;
+
+                        MessageBox.Show(mensaje, "Eliminación",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnNuevo2_Click(object sender, EventArgs e)
+        {
+            btnNuevo.PerformClick();
+        }
+
+        private void BtnGuardar2_Click(object sender, EventArgs e)
+        {
+            btnGuardar.PerformClick();
+        }
+
+        private void BtnActualizar2_Click(object sender, EventArgs e)
+        {
+            btnActualizar.PerformClick();
+        }
+
+        private void BtnEliminar2_Click(object sender, EventArgs e)
+        {
+            btnEliminar.PerformClick();
+        }
+
+        private void BtnSalir2_Click(object sender, EventArgs e)
+        {
+            btnSalir.PerformClick();
+        }
     }
 }
