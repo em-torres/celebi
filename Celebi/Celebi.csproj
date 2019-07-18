@@ -246,6 +246,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\_Add Monitor.png" />
+    <None Include="Resources\_Smartphone.png" />
     <None Include="Resources\_Add Monitor1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

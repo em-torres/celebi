@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace celebi.Vistas
+namespace celebi.Vistas.Reportes
 {
     public partial class FrmRepCompanias : Form
     {
         public FrmRepCompanias()
         {
             InitializeComponent();
-        }
-
-        private void FrmRepCompanias_Load(object sender, EventArgs e)
-        {
-            
         }
     }
 }

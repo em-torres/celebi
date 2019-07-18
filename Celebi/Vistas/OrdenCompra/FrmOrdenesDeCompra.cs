@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,10 @@ namespace celebi.Vistas.OrdenCompra
     {
         private static FrmOrdenesDeCompra frmInstance = null;
 
-        private int ID;
+        private string ID;
+        private float costoEnvio;
+        private float costoNeto;
+        private float costoTotal;
 
         public static FrmOrdenesDeCompra Instance()
         {
@@ -45,7 +49,7 @@ namespace celebi.Vistas.OrdenCompra
         public void LlenarGridOrdenCompra()
         {
             OrdenCompraBL cli = new OrdenCompraBL();
-            dgvComp.DataSource = cli.LlenarOrdenCompras();
+            dgvOrd.DataSource = cli.LlenarOrdenCompras();
 
             CambiarTextoColumnasDG();
             CambiarNombreColumnasDG();
@@ -53,28 +57,28 @@ namespace celebi.Vistas.OrdenCompra
 
         public void CambiarTextoColumnasDG()
         {
-            dgvComp.Columns[0].HeaderText = "Id";
-            dgvComp.Columns[1].HeaderText = "Fecha Solicitud";
-            dgvComp.Columns[2].HeaderText = "Solicitante";
-            dgvComp.Columns[3].HeaderText = "Proveedor";
-            dgvComp.Columns[4].HeaderText = "Forma de Entrega";
-            dgvComp.Columns[5].HeaderText = "Condicion de Pago";
-            dgvComp.Columns[6].HeaderText = "Costo Neto";
-            dgvComp.Columns[7].HeaderText = "Costo Envio";
-            dgvComp.Columns[8].HeaderText = "Costo Total";
+            dgvOrd.Columns[0].HeaderText = "Id";
+            dgvOrd.Columns[1].HeaderText = "Fecha Solicitud";
+            dgvOrd.Columns[2].HeaderText = "Solicitante";
+            dgvOrd.Columns[3].HeaderText = "Proveedor";
+            dgvOrd.Columns[4].HeaderText = "Forma de Entrega";
+            dgvOrd.Columns[5].HeaderText = "Condicion de Pago";
+            dgvOrd.Columns[6].HeaderText = "Costo Neto";
+            dgvOrd.Columns[7].HeaderText = "Costo Envio";
+            dgvOrd.Columns[8].HeaderText = "Costo Total";
         }
 
         public void CambiarNombreColumnasDG()
         {
-            dgvComp.Columns[0].Name = "Id";
-            dgvComp.Columns[1].Name = "Fecha Solicitud";
-            dgvComp.Columns[2].Name = "Solicitante";
-            dgvComp.Columns[3].Name = "Proveedor";
-            dgvComp.Columns[4].Name = "Forma de Entrega";
-            dgvComp.Columns[5].Name = "Condicion de Pago";
-            dgvComp.Columns[6].Name = "Costo Neto";
-            dgvComp.Columns[7].Name = "Costo Envio";
-            dgvComp.Columns[8].Name = "Costo Total";
+            dgvOrd.Columns[0].Name = "Id";
+            dgvOrd.Columns[1].Name = "Fecha Solicitud";
+            dgvOrd.Columns[2].Name = "Solicitante";
+            dgvOrd.Columns[3].Name = "Proveedor";
+            dgvOrd.Columns[4].Name = "Forma de Entrega";
+            dgvOrd.Columns[5].Name = "Condicion de Pago";
+            dgvOrd.Columns[6].Name = "Costo Neto";
+            dgvOrd.Columns[7].Name = "Costo Envio";
+            dgvOrd.Columns[8].Name = "Costo Total";
         }
 
         private void DgvComp_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -85,23 +89,53 @@ namespace celebi.Vistas.OrdenCompra
 
         public void PaginarOrdenesDeCompra()
         {
-            int fila = dgvComp.CurrentRow.Index;
+            int fila = dgvOrd.CurrentRow.Index;
 
             try
             {
-               //ID = Int32.Parse(dgvComp.Rows[fila].Cells["Id"].Value.ToString());
-               //txtId.Text = dgvComp.Rows[fila].Cells["Rnc"].Value.ToString();
-               //txtNombre.Text = dgvComp.Rows[fila].Cells["Compañía"].Value.ToString();
-               //txtDireccion.Text = dgvComp.Rows[fila].Cells["Dirección"].Value.ToString();
-               //txtTelComp.Text = dgvComp.Rows[fila].Cells["Teléfono"].Value.ToString();
-               //txtFormaEntrega.Text = dgvComp.Rows[fila].Cells["Email Comp"].Value.ToString();
-               //txtCondicionPago.Text = dgvComp.Rows[fila].Cells["Contacto"].Value.ToString();
-               //txtTelContacto.Text = dgvComp.Rows[fila].Cells["Tel Contacto"].Value.ToString();
-               //txtEmailContacto.Text = dgvComp.Rows[fila].Cells["Email Contacto"].Value.ToString();
-               //chkActivo.Checked = Convert.ToBoolean(dgvComp.Rows[fila].Cells["Activo"].Value.ToString());
+                string date = dgvOrd.Rows[fila].Cells["Fecha Solicitud"].Value.ToString().Substring(0,10);
+
+                ID = dgvOrd.Rows[fila].Cells["Id"].Value.ToString();
+                txtId.Text = dgvOrd.Rows[fila].Cells["Id"].Value.ToString();
+                dtpFechaSolicitud.Value = Convert.ToDateTime(date);
+                cbxSolicitante.SelectedValue = dgvOrd.Rows[fila].Cells["Solicitante"].Value.ToString();
+                cbxProveedor.SelectedValue = dgvOrd.Rows[fila].Cells["Proveedor"].Value.ToString();
+                txtFormaEntrega.Text = dgvOrd.Rows[fila].Cells["Forma de Entrega"].Value.ToString();
+                txtCondicionPago.Text = dgvOrd.Rows[fila].Cells["Condicion de Pago"].Value.ToString();
+                txtCostoEnvio.Text = float.Parse(dgvOrd.Rows[fila].Cells["Costo Envio"].Value.ToString()).ToString("N2");
+                lblCostoNeto.Text = float.Parse(dgvOrd.Rows[fila].Cells["Costo Neto"].Value.ToString()).ToString("N2");
+                lblCostoTotal.Text = float.Parse(dgvOrd.Rows[fila].Cells["Costo Total"].Value.ToString()).ToString("N2");
+                chkActivo.Checked = Convert.ToBoolean(dgvOrd.Rows[fila].Cells["Activo"].Value.ToString());
             }
             catch (Exception) { throw; }
         }
 
+        private void sumarCostoTotal()
+        {
+            if (txtCostoEnvio.Text == "")
+            {
+                txtCostoEnvio.Text = "0.00";
+            }
+            costoEnvio = float.Parse(txtCostoEnvio.Text);
+            costoNeto = float.Parse(lblCostoNeto.Text);
+            costoTotal = costoEnvio + costoNeto;
+
+            lblCostoTotal.Text = costoTotal.ToString("N2");
+        }
+
+        private void sumarCostoNeto()
+        {
+
+        }
+
+        private void TxtCostoEnvio_TextChanged(object sender, EventArgs e)
+        {
+            sumarCostoTotal();
+        }
+
+        private void LblCostoNeto_TextChanged(object sender, EventArgs e)
+        {
+            sumarCostoTotal();
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace celebi.Vistas
+﻿namespace celebi.Vistas.Reportes
 {
     partial class FrmRepCompanias
     {
@@ -38,7 +38,6 @@
             this.Name = "FrmRepCompanias";
             this.Text = "FrmRepCompanias";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FrmRepCompanias_Load);
             this.ResumeLayout(false);
 
         }

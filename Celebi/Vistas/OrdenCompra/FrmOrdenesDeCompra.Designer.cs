@@ -32,16 +32,16 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.dgvComp = new System.Windows.Forms.DataGridView();
+            this.dgvOrd = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbProveedor = new System.Windows.Forms.RadioButton();
             this.rbOrdCompra = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblCostoNeto = new System.Windows.Forms.Label();
             this.lblCostoTotal = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.lblCostoNeto = new System.Windows.Forms.Label();
             this.txtCostoEnvio = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,6 +62,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbxSolicitante = new System.Windows.Forms.ComboBox();
+            this.empleadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dtpFechaSolicitud = new System.Windows.Forms.DateTimePicker();
             this.chkActivo = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -74,13 +75,12 @@
             this.btnActualizar = new System.Windows.Forms.ToolStripButton();
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
             this.btnSalir = new System.Windows.Forms.ToolStripButton();
-            this.empleadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.empleadosTableAdapter = new celebi.CELEBI_DataSetTableAdapters.EmpleadosTableAdapter();
             this.cELEBIDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.companiasTableAdapter = new celebi.CELEBI_DataSetTableAdapters.CompaniasTableAdapter();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvComp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrd)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -89,8 +89,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.empleadosBindingSource)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cELEBIDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,7 +108,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.btnBuscar);
-            this.tabPage1.Controls.Add(this.dgvComp);
+            this.tabPage1.Controls.Add(this.dgvOrd);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -129,15 +129,15 @@
             this.btnBuscar.TabIndex = 4;
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
-            // dgvComp
+            // dgvOrd
             // 
-            this.dgvComp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvComp.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvComp.Location = new System.Drawing.Point(3, 91);
-            this.dgvComp.Name = "dgvComp";
-            this.dgvComp.Size = new System.Drawing.Size(728, 309);
-            this.dgvComp.TabIndex = 2;
-            this.dgvComp.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvComp_CellContentClick);
+            this.dgvOrd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrd.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvOrd.Location = new System.Drawing.Point(3, 91);
+            this.dgvOrd.Name = "dgvOrd";
+            this.dgvOrd.Size = new System.Drawing.Size(728, 309);
+            this.dgvOrd.TabIndex = 2;
+            this.dgvOrd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvComp_CellContentClick);
             // 
             // groupBox2
             // 
@@ -194,9 +194,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lblCostoNeto);
             this.tabPage2.Controls.Add(this.lblCostoTotal);
             this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Controls.Add(this.lblCostoNeto);
             this.tabPage2.Controls.Add(this.txtCostoEnvio);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label5);
@@ -211,15 +211,30 @@
             this.tabPage2.Text = "Edición";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lblCostoNeto
+            // 
+            this.lblCostoNeto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCostoNeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCostoNeto.Location = new System.Drawing.Point(600, 79);
+            this.lblCostoNeto.Name = "lblCostoNeto";
+            this.lblCostoNeto.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblCostoNeto.Size = new System.Drawing.Size(128, 24);
+            this.lblCostoNeto.TabIndex = 30;
+            this.lblCostoNeto.Text = "0.00";
+            this.lblCostoNeto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblCostoNeto.TextChanged += new System.EventHandler(this.LblCostoNeto_TextChanged);
+            // 
             // lblCostoTotal
             // 
-            this.lblCostoTotal.AutoSize = true;
+            this.lblCostoTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCostoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCostoTotal.Location = new System.Drawing.Point(668, 125);
+            this.lblCostoTotal.Location = new System.Drawing.Point(601, 130);
             this.lblCostoTotal.Name = "lblCostoTotal";
-            this.lblCostoTotal.Size = new System.Drawing.Size(45, 24);
+            this.lblCostoTotal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblCostoTotal.Size = new System.Drawing.Size(125, 24);
             this.lblCostoTotal.TabIndex = 32;
             this.lblCostoTotal.Text = "0.00";
+            this.lblCostoTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label11
             // 
@@ -230,16 +245,6 @@
             this.label11.TabIndex = 31;
             this.label11.Text = "Costo Total:";
             // 
-            // lblCostoNeto
-            // 
-            this.lblCostoNeto.AutoSize = true;
-            this.lblCostoNeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCostoNeto.Location = new System.Drawing.Point(668, 77);
-            this.lblCostoNeto.Name = "lblCostoNeto";
-            this.lblCostoNeto.Size = new System.Drawing.Size(45, 24);
-            this.lblCostoNeto.TabIndex = 30;
-            this.lblCostoNeto.Text = "0.00";
-            // 
             // txtCostoEnvio
             // 
             this.txtCostoEnvio.Location = new System.Drawing.Point(600, 30);
@@ -248,6 +253,7 @@
             this.txtCostoEnvio.TabIndex = 29;
             this.txtCostoEnvio.Text = "0.00";
             this.txtCostoEnvio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCostoEnvio.TextChanged += new System.EventHandler(this.TxtCostoEnvio_TextChanged);
             // 
             // label7
             // 
@@ -386,7 +392,7 @@
             this.txtFormaEntrega.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFormaEntrega.Location = new System.Drawing.Point(10, 99);
-            this.txtFormaEntrega.MaxLength = 75;
+            this.txtFormaEntrega.MaxLength = 150;
             this.txtFormaEntrega.Name = "txtFormaEntrega";
             this.txtFormaEntrega.Size = new System.Drawing.Size(219, 20);
             this.txtFormaEntrega.TabIndex = 13;
@@ -405,7 +411,7 @@
             this.txtCondicionPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCondicionPago.Location = new System.Drawing.Point(10, 149);
-            this.txtCondicionPago.MaxLength = 130;
+            this.txtCondicionPago.MaxLength = 75;
             this.txtCondicionPago.Name = "txtCondicionPago";
             this.txtCondicionPago.Size = new System.Drawing.Size(218, 20);
             this.txtCondicionPago.TabIndex = 16;
@@ -445,6 +451,11 @@
             this.cbxSolicitante.Size = new System.Drawing.Size(232, 21);
             this.cbxSolicitante.TabIndex = 28;
             this.cbxSolicitante.ValueMember = "CodEmp";
+            // 
+            // empleadosBindingSource
+            // 
+            this.empleadosBindingSource.DataMember = "Empleados";
+            this.empleadosBindingSource.DataSource = this.cELEBI_DataSet;
             // 
             // dtpFechaSolicitud
             // 
@@ -495,7 +506,7 @@
             this.txtId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtId.Location = new System.Drawing.Point(92, 31);
-            this.txtId.MaxLength = 11;
+            this.txtId.MaxLength = 10;
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(232, 20);
             this.txtId.TabIndex = 1;
@@ -560,11 +571,6 @@
             this.btnSalir.Size = new System.Drawing.Size(34, 34);
             this.btnSalir.Text = "Salir";
             // 
-            // empleadosBindingSource
-            // 
-            this.empleadosBindingSource.DataMember = "Empleados";
-            this.empleadosBindingSource.DataSource = this.cELEBI_DataSet;
-            // 
             // empleadosTableAdapter
             // 
             this.empleadosTableAdapter.ClearBeforeFill = true;
@@ -590,7 +596,7 @@
             this.Load += new System.EventHandler(this.FrmOrdenesDeCompra_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvComp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrd)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -604,9 +610,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.empleadosBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.empleadosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cELEBIDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -618,7 +624,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.DataGridView dgvComp;
+        private System.Windows.Forms.DataGridView dgvOrd;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtBusqueda;
         private System.Windows.Forms.GroupBox groupBox1;
