@@ -1,4 +1,5 @@
 ﻿using celebi.Vistas.Mantenimiento;
+using celebi.Vistas.OrdenCompra;
 using Logica;
 using System;
 using System.Collections.Generic;
@@ -101,6 +102,10 @@ namespace celebi.Vistas.Menu
             {
                 toolStripButton4.PerformClick();
             }
+            else if (item.ToString() == "Orden de Compra")
+            {
+                toolStripButton6.PerformClick();
+            }
             else if (item.ToString() == "Salir")
             {
                 Close();
@@ -140,6 +145,14 @@ namespace celebi.Vistas.Menu
         {
             FrmEmpleados llamar = null;
             llamar = FrmEmpleados.Instance();
+            llamar.MdiParent = this;
+            llamar.Show();
+        }
+
+        private void ToolStripButton6_Click(object sender, EventArgs e)
+        {
+            FrmOrdenesDeCompra llamar = null;
+            llamar = FrmOrdenesDeCompra.Instance();
             llamar.MdiParent = this;
             llamar.Show();
         }

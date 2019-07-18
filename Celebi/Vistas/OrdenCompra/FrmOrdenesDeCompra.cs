@@ -37,7 +37,7 @@ namespace celebi.Vistas.OrdenCompra
             // TODO: This line of code loads data into the 'cELEBI_DataSet.Companias' table. You can move, or remove it, as needed.
             this.companiasTableAdapter.FillBy(this.cELEBI_DataSet.Companias);
             // TODO: This line of code loads data into the 'cELEBI_DataSet.Empleados' table. You can move, or remove it, as needed.
-            this.empleadosTableAdapter.Fill(this.cELEBI_DataSet.Empleados);
+            this.empleadosTableAdapter.FillBy(this.cELEBI_DataSet.Empleados);
             rbOrdCompra.Checked = true;
             LlenarGridOrdenCompra();
         }

@@ -45,6 +45,8 @@
     <Compile Include="DepartamentoBL.cs" />
     <Compile Include="EmpleadoBL.cs" />
     <Compile Include="MenuBL.cs" />
+    <Compile Include="OrdenCompraBL.cs" />
+    <Compile Include="OrdenCompra_ProductoBL.cs" />
     <Compile Include="ProductoBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

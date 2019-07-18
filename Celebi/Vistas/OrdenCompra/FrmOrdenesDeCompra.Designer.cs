@@ -53,6 +53,8 @@
             this.btnEliminar2 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbxProveedor = new System.Windows.Forms.ComboBox();
+            this.companiasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cELEBI_DataSet = new celebi.CELEBI_DataSet();
             this.label6 = new System.Windows.Forms.Label();
             this.txtFormaEntrega = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -72,11 +74,9 @@
             this.btnActualizar = new System.Windows.Forms.ToolStripButton();
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
             this.btnSalir = new System.Windows.Forms.ToolStripButton();
-            this.cELEBI_DataSet = new celebi.CELEBI_DataSet();
             this.empleadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.empleadosTableAdapter = new celebi.CELEBI_DataSetTableAdapters.EmpleadosTableAdapter();
             this.cELEBIDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.companiasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.companiasTableAdapter = new celebi.CELEBI_DataSetTableAdapters.CompaniasTableAdapter();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -86,12 +86,12 @@
             this.tabPage2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.empleadosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cELEBIDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -362,6 +362,16 @@
             this.cbxProveedor.TabIndex = 18;
             this.cbxProveedor.ValueMember = "IdComp";
             // 
+            // companiasBindingSource
+            // 
+            this.companiasBindingSource.DataMember = "Companias";
+            this.companiasBindingSource.DataSource = this.cELEBI_DataSet;
+            // 
+            // cELEBI_DataSet
+            // 
+            this.cELEBI_DataSet.DataSetName = "CELEBI_DataSet";
+            this.cELEBI_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -427,11 +437,14 @@
             // 
             // cbxSolicitante
             // 
+            this.cbxSolicitante.DataSource = this.empleadosBindingSource;
+            this.cbxSolicitante.DisplayMember = "NombreEmp";
             this.cbxSolicitante.FormattingEnabled = true;
             this.cbxSolicitante.Location = new System.Drawing.Point(92, 91);
             this.cbxSolicitante.Name = "cbxSolicitante";
             this.cbxSolicitante.Size = new System.Drawing.Size(232, 21);
             this.cbxSolicitante.TabIndex = 28;
+            this.cbxSolicitante.ValueMember = "CodEmp";
             // 
             // dtpFechaSolicitud
             // 
@@ -547,11 +560,6 @@
             this.btnSalir.Size = new System.Drawing.Size(34, 34);
             this.btnSalir.Text = "Salir";
             // 
-            // cELEBI_DataSet
-            // 
-            this.cELEBI_DataSet.DataSetName = "CELEBI_DataSet";
-            this.cELEBI_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // empleadosBindingSource
             // 
             this.empleadosBindingSource.DataMember = "Empleados";
@@ -565,11 +573,6 @@
             // 
             this.cELEBIDataSetBindingSource.DataSource = this.cELEBI_DataSet;
             this.cELEBIDataSetBindingSource.Position = 0;
-            // 
-            // companiasBindingSource
-            // 
-            this.companiasBindingSource.DataMember = "Companias";
-            this.companiasBindingSource.DataSource = this.cELEBI_DataSet;
             // 
             // companiasTableAdapter
             // 
@@ -597,14 +600,14 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.empleadosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cELEBIDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
