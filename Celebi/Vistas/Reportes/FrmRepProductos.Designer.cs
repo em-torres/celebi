@@ -1,6 +1,6 @@
 ﻿namespace celebi.Vistas.Reportes
 {
-    partial class FrmRepCompanias
+    partial class FrmRepProductos
     {
         /// <summary>
         /// Required designer variable.
@@ -32,19 +32,21 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.cELEBI_DataSet = new celebi.CELEBI_DataSet();
-            this.companiasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.companiasTableAdapter = new celebi.CELEBI_DataSetTableAdapters.CompaniasTableAdapter();
+            this.cELEBIDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productosTableAdapter = new celebi.CELEBI_DataSetTableAdapters.ProductosTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cELEBIDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DScompanias";
-            reportDataSource1.Value = this.companiasBindingSource;
+            reportDataSource1.Name = "DsProductos";
+            reportDataSource1.Value = this.productosBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "celebi.Reportes.RepCompanias.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "celebi.Reportes.RepProductos.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
@@ -55,27 +57,33 @@
             this.cELEBI_DataSet.DataSetName = "CELEBI_DataSet";
             this.cELEBI_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // companiasBindingSource
+            // cELEBIDataSetBindingSource
             // 
-            this.companiasBindingSource.DataMember = "Companias";
-            this.companiasBindingSource.DataSource = this.cELEBI_DataSet;
+            this.cELEBIDataSetBindingSource.DataSource = this.cELEBI_DataSet;
+            this.cELEBIDataSetBindingSource.Position = 0;
             // 
-            // companiasTableAdapter
+            // productosBindingSource
             // 
-            this.companiasTableAdapter.ClearBeforeFill = true;
+            this.productosBindingSource.DataMember = "Productos";
+            this.productosBindingSource.DataSource = this.cELEBI_DataSet;
             // 
-            // FrmRepCompanias
+            // productosTableAdapter
+            // 
+            this.productosTableAdapter.ClearBeforeFill = true;
+            // 
+            // FrmRepProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
-            this.Name = "FrmRepCompanias";
-            this.Text = "FrmRepCompanias";
+            this.Name = "FrmRepProductos";
+            this.Text = "FrmRepProductos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FrmRepCompanias_Load);
+            this.Load += new System.EventHandler(this.FrmRepProductos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cELEBIDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -83,8 +91,9 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource cELEBIDataSetBindingSource;
         private CELEBI_DataSet cELEBI_DataSet;
-        private System.Windows.Forms.BindingSource companiasBindingSource;
-        private CELEBI_DataSetTableAdapters.CompaniasTableAdapter companiasTableAdapter;
+        private System.Windows.Forms.BindingSource productosBindingSource;
+        private CELEBI_DataSetTableAdapters.ProductosTableAdapter productosTableAdapter;
     }
 }

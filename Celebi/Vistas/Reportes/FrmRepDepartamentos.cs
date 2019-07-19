@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace celebi.Vistas.Reportes
 {
-    public partial class FrmRepCompanias : Form
+    public partial class FrmRepDepartamentos : Form
     {
-        public FrmRepCompanias()
+        public FrmRepDepartamentos()
         {
             InitializeComponent();
         }
 
-        private void FrmRepCompanias_Load(object sender, EventArgs e)
+        private void FrmRepDepartamentos_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cELEBI_DataSet.Companias' table. You can move, or remove it, as needed.
-            this.companiasTableAdapter.FillBy(this.cELEBI_DataSet.Companias);
+            // TODO: This line of code loads data into the 'cELEBI_DataSet.Departamentos' table. You can move, or remove it, as needed.
+            this.departamentosTableAdapter.FillBy(this.cELEBI_DataSet.Departamentos);
 
             this.reportViewer1.RefreshReport();
         }

@@ -1,6 +1,6 @@
 ﻿namespace celebi.Vistas.Reportes
 {
-    partial class FrmRepCompanias
+    partial class FrmRepEmpleados
     {
         /// <summary>
         /// Required designer variable.
@@ -32,19 +32,19 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.cELEBI_DataSet = new celebi.CELEBI_DataSet();
-            this.companiasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.companiasTableAdapter = new celebi.CELEBI_DataSetTableAdapters.CompaniasTableAdapter();
+            this.empleadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.empleadosTableAdapter = new celebi.CELEBI_DataSetTableAdapters.EmpleadosTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empleadosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DScompanias";
-            reportDataSource1.Value = this.companiasBindingSource;
+            reportDataSource1.Name = "DsEmpleados";
+            reportDataSource1.Value = this.empleadosBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "celebi.Reportes.RepCompanias.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "celebi.Reportes.RepEmpleados.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
@@ -55,27 +55,27 @@
             this.cELEBI_DataSet.DataSetName = "CELEBI_DataSet";
             this.cELEBI_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // companiasBindingSource
+            // empleadosBindingSource
             // 
-            this.companiasBindingSource.DataMember = "Companias";
-            this.companiasBindingSource.DataSource = this.cELEBI_DataSet;
+            this.empleadosBindingSource.DataMember = "Empleados";
+            this.empleadosBindingSource.DataSource = this.cELEBI_DataSet;
             // 
-            // companiasTableAdapter
+            // empleadosTableAdapter
             // 
-            this.companiasTableAdapter.ClearBeforeFill = true;
+            this.empleadosTableAdapter.ClearBeforeFill = true;
             // 
-            // FrmRepCompanias
+            // FrmRepEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
-            this.Name = "FrmRepCompanias";
-            this.Text = "FrmRepCompanias";
+            this.Name = "FrmRepEmpleados";
+            this.Text = "FrmRepEmpleados";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FrmRepCompanias_Load);
+            this.Load += new System.EventHandler(this.FrmRepEmpleados_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.empleadosBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -84,7 +84,7 @@
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private CELEBI_DataSet cELEBI_DataSet;
-        private System.Windows.Forms.BindingSource companiasBindingSource;
-        private CELEBI_DataSetTableAdapters.CompaniasTableAdapter companiasTableAdapter;
+        private System.Windows.Forms.BindingSource empleadosBindingSource;
+        private CELEBI_DataSetTableAdapters.EmpleadosTableAdapter empleadosTableAdapter;
     }
 }
