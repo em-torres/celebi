@@ -58,7 +58,7 @@ namespace Datos
                     ComandoSQL.Parameters.AddWithValue("@CondicionPago", OrdenCompra.CondicionPago);
                     ComandoSQL.Parameters.AddWithValue("@CostoNeto", OrdenCompra.CostoNeto);
                     ComandoSQL.Parameters.AddWithValue("@CostoEnvio", OrdenCompra.CostoEnvio);
-                    ComandoSQL.Parameters.AddWithValue("@CostoTotal", OrdenCompra.FormaEntrega);
+                    ComandoSQL.Parameters.AddWithValue("@CostoTotal", OrdenCompra.CostoTotal);
                     ComandoSQL.Parameters.AddWithValue("@Activo", OrdenCompra.Activo);
 
                     //Ejecutar Comando
@@ -128,7 +128,7 @@ namespace Datos
                     ComandoSQL.Parameters.AddWithValue("@CondicionPago", OrdenCompra.CondicionPago);
                     ComandoSQL.Parameters.AddWithValue("@CostoNeto", OrdenCompra.CostoNeto);
                     ComandoSQL.Parameters.AddWithValue("@CostoEnvio", OrdenCompra.CostoEnvio);
-                    ComandoSQL.Parameters.AddWithValue("@CostoTotal", OrdenCompra.FormaEntrega);
+                    ComandoSQL.Parameters.AddWithValue("@CostoTotal", OrdenCompra.CostoTotal);
                     ComandoSQL.Parameters.AddWithValue("@Activo", OrdenCompra.Activo);
 
                     //Ejecutar Comando

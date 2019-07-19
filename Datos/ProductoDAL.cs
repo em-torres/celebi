@@ -203,7 +203,7 @@ namespace Datos
                         AdaptadorSQL.Fill(Dt);
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     throw;
                 }

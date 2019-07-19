@@ -40,9 +40,15 @@
             this.rbOrdCompra = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRemoverProd = new System.Windows.Forms.Button();
+            this.btnAgregarProd = new System.Windows.Forms.Button();
             this.dgvProd = new System.Windows.Forms.DataGridView();
+            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxProducto = new System.Windows.Forms.ComboBox();
             this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cELEBI_DataSet = new celebi.CELEBI_DataSet();
@@ -86,12 +92,6 @@
             this.cELEBIDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.companiasTableAdapter = new celebi.CELEBI_DataSetTableAdapters.CompaniasTableAdapter();
             this.productosTableAdapter = new celebi.CELEBI_DataSetTableAdapters.ProductosTableAdapter();
-            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrd)).BeginInit();
@@ -233,8 +233,8 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.button2);
-            this.groupBox6.Controls.Add(this.button1);
+            this.groupBox6.Controls.Add(this.btnRemoverProd);
+            this.groupBox6.Controls.Add(this.btnAgregarProd);
             this.groupBox6.Controls.Add(this.dgvProd);
             this.groupBox6.Controls.Add(this.cbxProducto);
             this.groupBox6.Controls.Add(this.label9);
@@ -246,29 +246,29 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Productos";
             // 
-            // button2
+            // btnRemoverProd
             // 
-            this.button2.BackgroundImage = global::celebi.Properties.Resources.minus_icon;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(348, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(39, 38);
-            this.button2.TabIndex = 7;
-            this.button2.Tag = "Eliminar Producto";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.btnRemoverProd.BackgroundImage = global::celebi.Properties.Resources.minus_icon;
+            this.btnRemoverProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRemoverProd.Location = new System.Drawing.Point(348, 14);
+            this.btnRemoverProd.Name = "btnRemoverProd";
+            this.btnRemoverProd.Size = new System.Drawing.Size(39, 38);
+            this.btnRemoverProd.TabIndex = 7;
+            this.btnRemoverProd.Tag = "Eliminar Producto";
+            this.btnRemoverProd.UseVisualStyleBackColor = true;
+            this.btnRemoverProd.Click += new System.EventHandler(this.BtnRemoverProd_Click);
             // 
-            // button1
+            // btnAgregarProd
             // 
-            this.button1.BackgroundImage = global::celebi.Properties.Resources.plus_icon;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(284, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 38);
-            this.button1.TabIndex = 6;
-            this.button1.Tag = "Agregar Producto";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.btnAgregarProd.BackgroundImage = global::celebi.Properties.Resources.plus_icon;
+            this.btnAgregarProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAgregarProd.Location = new System.Drawing.Point(284, 14);
+            this.btnAgregarProd.Name = "btnAgregarProd";
+            this.btnAgregarProd.Size = new System.Drawing.Size(40, 38);
+            this.btnAgregarProd.TabIndex = 6;
+            this.btnAgregarProd.Tag = "Agregar Producto";
+            this.btnAgregarProd.UseVisualStyleBackColor = true;
+            this.btnAgregarProd.Click += new System.EventHandler(this.BtnAgregarProd_Click);
             // 
             // dgvProd
             // 
@@ -286,7 +286,44 @@
             this.dgvProd.Size = new System.Drawing.Size(712, 150);
             this.dgvProd.TabIndex = 2;
             this.dgvProd.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProd_CellEndEdit);
-            this.dgvProd.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProd_CellLeave);
+            // 
+            // IdProducto
+            // 
+            this.IdProducto.HeaderText = "Id Producto";
+            this.IdProducto.Name = "IdProducto";
+            this.IdProducto.ReadOnly = true;
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "Producto";
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            this.Producto.Width = 175;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 70;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.Width = 70;
+            // 
+            // Costo
+            // 
+            this.Costo.HeaderText = "Costo";
+            this.Costo.Name = "Costo";
+            this.Costo.Width = 70;
+            // 
+            // DescProd
+            // 
+            this.DescProd.HeaderText = "Descripcion";
+            this.DescProd.MaxInputLength = 250;
+            this.DescProd.Name = "DescProd";
+            this.DescProd.Width = 200;
             // 
             // cbxProducto
             // 
@@ -700,44 +737,6 @@
             // 
             this.productosTableAdapter.ClearBeforeFill = true;
             // 
-            // IdProducto
-            // 
-            this.IdProducto.HeaderText = "Id Producto";
-            this.IdProducto.Name = "IdProducto";
-            this.IdProducto.ReadOnly = true;
-            // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
-            this.Producto.Width = 175;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Width = 70;
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.Width = 70;
-            // 
-            // Costo
-            // 
-            this.Costo.HeaderText = "Costo";
-            this.Costo.Name = "Costo";
-            this.Costo.Width = 70;
-            // 
-            // DescProd
-            // 
-            this.DescProd.HeaderText = "Descripcion";
-            this.DescProd.MaxInputLength = 250;
-            this.DescProd.Name = "DescProd";
-            this.DescProd.Width = 200;
-            // 
             // FrmOrdenesDeCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -834,8 +833,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.BindingSource productosBindingSource;
         private CELEBI_DataSetTableAdapters.ProductosTableAdapter productosTableAdapter;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRemoverProd;
+        private System.Windows.Forms.Button btnAgregarProd;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;

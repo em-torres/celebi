@@ -47,13 +47,14 @@ namespace Datos
             {
                 ComandoSQL.Connection = AccesoDatos.ObtenerConexion();
                 ComandoSQL.CommandType = CommandType.StoredProcedure;
-                ComandoSQL.CommandText = "proc_OrdenCompra_ProductoInsertar";
+                ComandoSQL.CommandText = "proc_OrdCompra_ProdInsertar";
                 try
                 {
                     ComandoSQL.Parameters.AddWithValue("@IdOrdenCompra", OrdenCompra_Producto.IdOrdenCompra);
                     ComandoSQL.Parameters.AddWithValue("@Cant", OrdenCompra_Producto.Cant);
                     ComandoSQL.Parameters.AddWithValue("@Producto", OrdenCompra_Producto.Producto);
                     ComandoSQL.Parameters.AddWithValue("@Precio", OrdenCompra_Producto.Precio);
+                    ComandoSQL.Parameters.AddWithValue("@Costo", OrdenCompra_Producto.Costo);
                     ComandoSQL.Parameters.AddWithValue("@DescProd", OrdenCompra_Producto.DescProd);
 
                     //Ejecutar Comando
@@ -85,7 +86,7 @@ namespace Datos
             {
                 ComandoSQL.Connection = AccesoDatos.ObtenerConexion();
                 ComandoSQL.CommandType = CommandType.StoredProcedure;
-                ComandoSQL.CommandText = "proc_OrdenCompra_ProductoEliminar";
+                ComandoSQL.CommandText = "proc_OrdCompra_ProdEliminar";
                 try
                 {
                     ComandoSQL.Parameters.AddWithValue("@IdOrdenCompra", OrdenCompra_Producto.IdOrdenCompra);
@@ -111,13 +112,14 @@ namespace Datos
             {
                 ComandoSQL.Connection = AccesoDatos.ObtenerConexion();
                 ComandoSQL.CommandType = CommandType.StoredProcedure;
-                ComandoSQL.CommandText = "proc_OrdenCompra_ProductoActualizar";
+                ComandoSQL.CommandText = "proc_OrdCompra_ProdActualizar";
                 try
                 {
                     ComandoSQL.Parameters.AddWithValue("@IdOrdenCompra", OrdenCompra_Producto.IdOrdenCompra);
                     ComandoSQL.Parameters.AddWithValue("@Cant", OrdenCompra_Producto.Cant);
                     ComandoSQL.Parameters.AddWithValue("@Producto", OrdenCompra_Producto.Producto);
                     ComandoSQL.Parameters.AddWithValue("@Precio", OrdenCompra_Producto.Precio);
+                    ComandoSQL.Parameters.AddWithValue("@Costo", OrdenCompra_Producto.Costo);
                     ComandoSQL.Parameters.AddWithValue("@DescProd", OrdenCompra_Producto.DescProd);
 
                     //Ejecutar Comando

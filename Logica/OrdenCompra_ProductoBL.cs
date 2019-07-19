@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Logica
 {
-    public class OrdenCompra_OrdenCompra_ProductoBL
+    public class OrdenCompra_ProductoBL
     {
         OrdenCompra_ProductoDAL cli = new OrdenCompra_ProductoDAL();
 

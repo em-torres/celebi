@@ -12,6 +12,7 @@ namespace Entidades
         public int Cant { get; set; }
         public int Producto { get; set; }
         public float Precio { get; set; }
+        public float Costo { get; set; }
         public string DescProd { get; set; }
     }
 }

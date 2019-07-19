@@ -18,7 +18,6 @@ namespace celebi.Vistas.OrdenCompra
         private static FrmOrdenesDeCompra frmInstance = null;
 
         private string ID;
-        private int IdProd;
         private int filaActual = 0;
         private float costoEnvio;
         private float costoNeto;
@@ -170,6 +169,24 @@ namespace celebi.Vistas.OrdenCompra
             lblCostoTotal.Text = "0.00";
             cbxProveedor.SelectedIndex = 0;
             cbxSolicitante.SelectedIndex = 0;
+
+            // Limpiar DataGrid Productos
+            do
+            {
+                foreach (DataGridViewRow row in dgvProd.Rows)
+                {
+                    try
+                    {
+                        dgvProd.Rows.Remove(row);
+                    }
+                    catch (Exception) { }
+                }
+            } while (dgvProd.Rows.Count > 0);
+
+            filaActual = 0;
+
+            // Enfoca el primer campo
+            tabControl1.SelectedIndex = 1;
             txtId.Focus();
         }
 
@@ -222,7 +239,7 @@ namespace celebi.Vistas.OrdenCompra
                 string mensaje = "Registro agregado con éxito.";
 
                 OrdenCompraBL cli = new OrdenCompraBL();
-                OrdenCompras entidad = new OrdenCompras();            
+                OrdenCompras entidad = new OrdenCompras();
 
                 if (txtFormaEntrega.Text == string.Empty)
                     txtFormaEntrega.Text = null;
@@ -235,6 +252,7 @@ namespace celebi.Vistas.OrdenCompra
                 if (lblCostoTotal.Text == string.Empty)
                     lblCostoTotal.Text = "0.00";
 
+                ID = txtId.Text;
                 entidad.IdOrdenCompra = txtId.Text;
                 entidad.FechaSolicitud = dtpFechaSolicitud.Value.Date;
                 entidad.FormaEntrega = txtFormaEntrega.Text;
@@ -246,11 +264,13 @@ namespace celebi.Vistas.OrdenCompra
                 entidad.CostoTotal = float.Parse(lblCostoTotal.Text);
                 entidad.Activo = chkActivo.Checked;
 
+                // Proceso de Guardado de las Ordenes de Compra
                 respuesta = cli.RegOrdenCompra(entidad);
 
                 switch (respuesta)
                 {
                     case "exito":
+                        registrarProductosOrdCompra();
                         MessageBox.Show(mensaje, "Agregado",
                             MessageBoxButtons.OK, MessageBoxIcon.Information
                         );
@@ -287,8 +307,9 @@ namespace celebi.Vistas.OrdenCompra
         public bool validar()
         {
             bool valor = false;
+            int filasDgv = dgvProd.Rows.Count;
 
-            if (!string.IsNullOrWhiteSpace(txtId.Text))
+            if (!string.IsNullOrWhiteSpace(txtId.Text) && filasDgv > 0)
             {
                 valor = true;
             }
@@ -433,48 +454,46 @@ namespace celebi.Vistas.OrdenCompra
             btnSalir.PerformClick();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void BtnAgregarProd_Click(object sender, EventArgs e)
         {
-            agregarProducto();
+            agregarProductoDgv();
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void BtnRemoverProd_Click(object sender, EventArgs e)
         {
-            eliminarProducto();
+            eliminarProductoDgv();
         }
 
-        private void agregarProducto()
+        private void agregarProductoDgv()
         {
-            IdProd = Int32.Parse(cbxProducto.SelectedValue.ToString());
             string[] row = new string[] { "", "", "", "", "" };
 
-            Productos entidad = new Productos();
-            ProductoBL producto = new ProductoBL();
-            DataTable prd = producto.BusquedaProductoPorId(IdProd);
+            int IdProducto = Int32.Parse(cbxProducto.SelectedValue.ToString());
 
-            if (prd.Rows.Count > 0)
+            if (IdProducto < 2)
             {
-                DataRow fila = prd.Rows[0];
-
-                int IdProducto = Int32.Parse(fila["IdProd"].ToString());
-
-                if (IdProducto < 2)
-                {
-                    string mensaje = "Debe seleccionar un Producto Válido." +
-                    " Por favor seleccione un producto.";
-                    MessageBox.Show(mensaje, "Error al Agregar Producto",
-                      MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    return;
-                }
-                else
-                {
-                    dgvProd.Rows.Add(row);
-                    dgvProd.Rows[filaActual].Cells["IdProducto"].Value = fila["IdProd"].ToString();
-                    dgvProd.Rows[filaActual].Cells["Producto"].Value = fila["NombProd"].ToString();
-                }
+                string mensaje = "Debe seleccionar un Producto Válido." +
+                " Por favor seleccione un producto.";
+                MessageBox.Show(mensaje, "Error al Agregar Producto",
+                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            else
+            {
+                dgvProd.Rows.Add(row);
+                dgvProd.Rows[filaActual].Cells["IdProducto"].Value = IdProducto.ToString();
+                dgvProd.Rows[filaActual].Cells["Producto"].Value = cbxProducto.GetItemText(this.cbxProducto.SelectedItem);
             }
             
             filaActual += 1;
+        }
+
+        private void eliminarProductoDgv()
+        {
+            int filaEnfocada = dgvProd.CurrentCell.RowIndex;
+            dgvProd.Rows.RemoveAt(filaEnfocada);
+
+            sumarCostoNeto();
         }
 
         private void DgvProd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -506,12 +525,42 @@ namespace celebi.Vistas.OrdenCompra
             sumarCostoNeto();
         }
 
-        private void eliminarProducto()
+        private void registrarProductosOrdCompra()
         {
-            int filaEnfocada = dgvProd.CurrentCell.RowIndex;
-            dgvProd.Rows.RemoveAt(filaEnfocada);
+            OrdenCompra_ProductoBL ordpr = new OrdenCompra_ProductoBL();
+            OrdenCompra_Productos entidad = new OrdenCompra_Productos();
 
-            sumarCostoNeto();
+            foreach (DataGridViewRow fila in dgvProd.Rows)
+            {
+                try
+                {
+                    if (fila.Cells["IdProducto"].Value.ToString() == string.Empty)
+                        fila.Cells["IdProducto"].Value = "0";
+                    if (fila.Cells["Cantidad"].Value.ToString() == string.Empty)
+                        fila.Cells["Cantidad"].Value = "0";
+                    if (fila.Cells["Precio"].Value.ToString() == string.Empty)
+                        fila.Cells["Precio"].Value = "0.00";
+                    if (fila.Cells["Costo"].Value.ToString() == string.Empty)
+                        fila.Cells["Costo"].Value = "0.00";
+                    if (fila.Cells["DescProd"].Value == null)
+                        fila.Cells["DescProd"].Value = string.Empty;
+
+                    entidad.IdOrdenCompra = ID;
+                    entidad.Producto = Int32.Parse(fila.Cells["IdProducto"].Value.ToString());
+                    entidad.Cant = Int32.Parse(fila.Cells["Cantidad"].Value.ToString());
+                    entidad.Precio = float.Parse(fila.Cells["Precio"].Value.ToString());
+                    entidad.Costo = float.Parse(fila.Cells["Costo"].Value.ToString());
+                    entidad.DescProd = fila.Cells["DescProd"].Value.ToString();
+
+                    ordpr.RegOrdenCompra_Producto(entidad);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                
+            }
         }
+
     }
 }
