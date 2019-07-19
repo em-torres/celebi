@@ -180,5 +180,40 @@ namespace Datos
                 return Dt;
             }
         }
+
+        public DataTable BusquedaProductoPorId(int parametro)
+        {
+            string query;
+
+            AccesoDatos.ObtenerConexion().Open();
+            query = "SELECT TOP 1 * FROM Productos WHERE IdProd = " + parametro;
+
+            using (ComandoSQL = new SqlCommand())
+            {
+                ComandoSQL.Connection = AccesoDatos.ObtenerConexion();
+                ComandoSQL.CommandText = query;
+                ComandoSQL.CommandType = CommandType.Text;
+
+                try
+                {
+                    using (AdaptadorSQL = new SqlDataAdapter())
+                    {
+                        AdaptadorSQL.SelectCommand = ComandoSQL;
+                        Dt = new DataTable();
+                        AdaptadorSQL.Fill(Dt);
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+                finally
+                {
+                    AccesoDatos.ObtenerConexion().Close();
+                }
+
+                return Dt;
+            }
+        }
     }
 }

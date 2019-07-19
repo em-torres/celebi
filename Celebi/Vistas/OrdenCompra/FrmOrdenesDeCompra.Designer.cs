@@ -39,6 +39,14 @@
             this.rbProveedor = new System.Windows.Forms.RadioButton();
             this.rbOrdCompra = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dgvProd = new System.Windows.Forms.DataGridView();
+            this.cbxProducto = new System.Windows.Forms.ComboBox();
+            this.productosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cELEBI_DataSet = new celebi.CELEBI_DataSet();
+            this.label9 = new System.Windows.Forms.Label();
             this.lblCostoNeto = new System.Windows.Forms.Label();
             this.lblCostoTotal = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -54,7 +62,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbxProveedor = new System.Windows.Forms.ComboBox();
             this.companiasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cELEBI_DataSet = new celebi.CELEBI_DataSet();
             this.label6 = new System.Windows.Forms.Label();
             this.txtFormaEntrega = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -78,16 +85,26 @@
             this.empleadosTableAdapter = new celebi.CELEBI_DataSetTableAdapters.EmpleadosTableAdapter();
             this.cELEBIDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.companiasTableAdapter = new celebi.CELEBI_DataSetTableAdapters.CompaniasTableAdapter();
+            this.productosTableAdapter = new celebi.CELEBI_DataSetTableAdapters.ProductosTableAdapter();
+            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrd)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.empleadosBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -102,7 +119,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 37);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(742, 429);
+            this.tabControl1.Size = new System.Drawing.Size(742, 498);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -114,7 +131,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(734, 403);
+            this.tabPage1.Size = new System.Drawing.Size(734, 472);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Listado";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -134,9 +151,9 @@
             // 
             this.dgvOrd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrd.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvOrd.Location = new System.Drawing.Point(3, 91);
+            this.dgvOrd.Location = new System.Drawing.Point(3, 75);
             this.dgvOrd.Name = "dgvOrd";
-            this.dgvOrd.Size = new System.Drawing.Size(728, 309);
+            this.dgvOrd.Size = new System.Drawing.Size(728, 394);
             this.dgvOrd.TabIndex = 2;
             this.dgvOrd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvComp_CellContentClick);
             // 
@@ -196,6 +213,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox6);
             this.tabPage2.Controls.Add(this.lblCostoNeto);
             this.tabPage2.Controls.Add(this.lblCostoTotal);
             this.tabPage2.Controls.Add(this.label11);
@@ -208,10 +226,97 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(734, 403);
+            this.tabPage2.Size = new System.Drawing.Size(734, 472);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Edición";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.button2);
+            this.groupBox6.Controls.Add(this.button1);
+            this.groupBox6.Controls.Add(this.dgvProd);
+            this.groupBox6.Controls.Add(this.cbxProducto);
+            this.groupBox6.Controls.Add(this.label9);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox6.Location = new System.Drawing.Point(3, 188);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(728, 215);
+            this.groupBox6.TabIndex = 33;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Productos";
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::celebi.Properties.Resources.minus_icon;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.Location = new System.Drawing.Point(348, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(39, 38);
+            this.button2.TabIndex = 7;
+            this.button2.Tag = "Eliminar Producto";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::celebi.Properties.Resources.plus_icon;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Location = new System.Drawing.Point(284, 14);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(40, 38);
+            this.button1.TabIndex = 6;
+            this.button1.Tag = "Agregar Producto";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // dgvProd
+            // 
+            this.dgvProd.AllowUserToAddRows = false;
+            this.dgvProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdProducto,
+            this.Producto,
+            this.Cantidad,
+            this.Precio,
+            this.Costo,
+            this.DescProd});
+            this.dgvProd.Location = new System.Drawing.Point(9, 59);
+            this.dgvProd.Name = "dgvProd";
+            this.dgvProd.Size = new System.Drawing.Size(712, 150);
+            this.dgvProd.TabIndex = 2;
+            this.dgvProd.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProd_CellEndEdit);
+            this.dgvProd.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProd_CellLeave);
+            // 
+            // cbxProducto
+            // 
+            this.cbxProducto.DataSource = this.productosBindingSource;
+            this.cbxProducto.DisplayMember = "NombProd";
+            this.cbxProducto.FormattingEnabled = true;
+            this.cbxProducto.Location = new System.Drawing.Point(62, 22);
+            this.cbxProducto.Name = "cbxProducto";
+            this.cbxProducto.Size = new System.Drawing.Size(195, 21);
+            this.cbxProducto.TabIndex = 1;
+            this.cbxProducto.ValueMember = "IdProd";
+            // 
+            // productosBindingSource
+            // 
+            this.productosBindingSource.DataMember = "Productos";
+            this.productosBindingSource.DataSource = this.cELEBI_DataSet;
+            // 
+            // cELEBI_DataSet
+            // 
+            this.cELEBI_DataSet.DataSetName = "CELEBI_DataSet";
+            this.cELEBI_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Producto";
             // 
             // lblCostoNeto
             // 
@@ -283,7 +388,7 @@
             this.groupBox5.Controls.Add(this.btnGuardar2);
             this.groupBox5.Controls.Add(this.btnEliminar2);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox5.Location = new System.Drawing.Point(3, 334);
+            this.groupBox5.Location = new System.Drawing.Point(3, 403);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(728, 66);
             this.groupBox5.TabIndex = 26;
@@ -379,11 +484,6 @@
             // 
             this.companiasBindingSource.DataMember = "Companias";
             this.companiasBindingSource.DataSource = this.cELEBI_DataSet;
-            // 
-            // cELEBI_DataSet
-            // 
-            this.cELEBI_DataSet.DataSetName = "CELEBI_DataSet";
-            this.cELEBI_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label6
             // 
@@ -596,11 +696,53 @@
             // 
             this.companiasTableAdapter.ClearBeforeFill = true;
             // 
+            // productosTableAdapter
+            // 
+            this.productosTableAdapter.ClearBeforeFill = true;
+            // 
+            // IdProducto
+            // 
+            this.IdProducto.HeaderText = "Id Producto";
+            this.IdProducto.Name = "IdProducto";
+            this.IdProducto.ReadOnly = true;
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "Producto";
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            this.Producto.Width = 175;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 70;
+            // 
+            // Precio
+            // 
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.Width = 70;
+            // 
+            // Costo
+            // 
+            this.Costo.HeaderText = "Costo";
+            this.Costo.Name = "Costo";
+            this.Costo.Width = 70;
+            // 
+            // DescProd
+            // 
+            this.DescProd.HeaderText = "Descripcion";
+            this.DescProd.MaxInputLength = 250;
+            this.DescProd.Name = "DescProd";
+            this.DescProd.Width = 200;
+            // 
             // FrmOrdenesDeCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 466);
+            this.ClientSize = new System.Drawing.Size(742, 535);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FrmOrdenesDeCompra";
@@ -615,11 +757,15 @@
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companiasBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cELEBI_DataSet)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.empleadosBindingSource)).EndInit();
@@ -682,5 +828,19 @@
         private System.Windows.Forms.BindingSource cELEBIDataSetBindingSource;
         private System.Windows.Forms.BindingSource companiasBindingSource;
         private CELEBI_DataSetTableAdapters.CompaniasTableAdapter companiasTableAdapter;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.DataGridView dgvProd;
+        private System.Windows.Forms.ComboBox cbxProducto;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.BindingSource productosBindingSource;
+        private CELEBI_DataSetTableAdapters.ProductosTableAdapter productosTableAdapter;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Costo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescProd;
     }
 }

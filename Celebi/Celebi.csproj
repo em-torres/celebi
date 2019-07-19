@@ -245,6 +245,8 @@
     <None Include="Resources\Business Flat_expanded_11 Partner.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\plus icon.png" />
+    <None Include="Resources\minus icon.png" />
     <Content Include="Resources\_Add Monitor.png" />
     <None Include="Resources\_Smartphone.png" />
     <None Include="Resources\_Add Monitor1.png" />

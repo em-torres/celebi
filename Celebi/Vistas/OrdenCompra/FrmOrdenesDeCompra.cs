@@ -18,6 +18,8 @@ namespace celebi.Vistas.OrdenCompra
         private static FrmOrdenesDeCompra frmInstance = null;
 
         private string ID;
+        private int IdProd;
+        private int filaActual = 0;
         private float costoEnvio;
         private float costoNeto;
         private float costoTotal;
@@ -39,10 +41,13 @@ namespace celebi.Vistas.OrdenCompra
 
         private void FrmOrdenesDeCompra_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'cELEBI_DataSet.Productos' table. You can move, or remove it, as needed.
+            this.productosTableAdapter.Fill(this.cELEBI_DataSet.Productos);
             // TODO: This line of code loads data into the 'cELEBI_DataSet.Companias' table. You can move, or remove it, as needed.
             this.companiasTableAdapter.FillBy(this.cELEBI_DataSet.Companias);
             // TODO: This line of code loads data into the 'cELEBI_DataSet.Empleados' table. You can move, or remove it, as needed.
             this.empleadosTableAdapter.FillBy(this.cELEBI_DataSet.Empleados);
+
             rbOrdCompra.Checked = true;
             LlenarGridOrdenCompra();
         }
@@ -126,7 +131,23 @@ namespace celebi.Vistas.OrdenCompra
 
         private void sumarCostoNeto()
         {
+            float costoNeto = 0;
 
+            if (lblCostoNeto.Text == "")
+            {
+                lblCostoNeto.Text = "0.00";
+            }
+
+            foreach (DataGridViewRow fila in dgvProd.Rows)
+            {
+                if (string.IsNullOrWhiteSpace(fila.Cells["Costo"].Value.ToString()) || fila.Cells["Costo"].Value.ToString() == "")
+                {
+                    fila.Cells["Costo"].Value = "0.00";
+                }
+                costoNeto = costoNeto + float.Parse(fila.Cells["Costo"].Value.ToString());
+            }
+
+            lblCostoNeto.Text = costoNeto.ToString("N2");
         }
 
         private void TxtCostoEnvio_TextChanged(object sender, EventArgs e)
@@ -410,6 +431,87 @@ namespace celebi.Vistas.OrdenCompra
         private void BtnSalir2_Click(object sender, EventArgs e)
         {
             btnSalir.PerformClick();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            agregarProducto();
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            eliminarProducto();
+        }
+
+        private void agregarProducto()
+        {
+            IdProd = Int32.Parse(cbxProducto.SelectedValue.ToString());
+            string[] row = new string[] { "", "", "", "", "" };
+
+            Productos entidad = new Productos();
+            ProductoBL producto = new ProductoBL();
+            DataTable prd = producto.BusquedaProductoPorId(IdProd);
+
+            if (prd.Rows.Count > 0)
+            {
+                DataRow fila = prd.Rows[0];
+
+                int IdProducto = Int32.Parse(fila["IdProd"].ToString());
+
+                if (IdProducto < 2)
+                {
+                    string mensaje = "Debe seleccionar un Producto Válido." +
+                    " Por favor seleccione un producto.";
+                    MessageBox.Show(mensaje, "Error al Agregar Producto",
+                      MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
+                else
+                {
+                    dgvProd.Rows.Add(row);
+                    dgvProd.Rows[filaActual].Cells["IdProducto"].Value = fila["IdProd"].ToString();
+                    dgvProd.Rows[filaActual].Cells["Producto"].Value = fila["NombProd"].ToString();
+                }
+            }
+            
+            filaActual += 1;
+        }
+
+        private void DgvProd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int filaEnfocada = dgvProd.CurrentCell.RowIndex;
+            float cantProd;
+            float precioProd;
+            float costoProd;
+
+            if (dgvProd.Rows[filaEnfocada].Cells["Cantidad"].Value.ToString() == "")
+            {
+                dgvProd.Rows[filaEnfocada].Cells["Cantidad"].Value = "0";
+            }
+            if (dgvProd.Rows[filaEnfocada].Cells["Precio"].Value.ToString() == "")
+            {
+                dgvProd.Rows[filaEnfocada].Cells["Precio"].Value = "0.00";
+            }
+            if (dgvProd.Rows[filaEnfocada].Cells["Costo"].Value.ToString() == "")
+            {
+                dgvProd.Rows[filaEnfocada].Cells["Costo"].Value = "0.00";
+            }
+
+            // Calcula el Costo por Producto
+            cantProd = float.Parse(dgvProd.Rows[filaEnfocada].Cells["Cantidad"].Value.ToString());
+            precioProd = float.Parse(dgvProd.Rows[filaEnfocada].Cells["Precio"].Value.ToString());
+            costoProd = (cantProd * precioProd);
+            dgvProd.Rows[filaEnfocada].Cells["Costo"].Value = costoProd.ToString("N2");
+
+            sumarCostoNeto();
+        }
+
+        private void eliminarProducto()
+        {
+            int filaEnfocada = dgvProd.CurrentCell.RowIndex;
+            dgvProd.Rows.RemoveAt(filaEnfocada);
+
+            sumarCostoNeto();
         }
     }
 }

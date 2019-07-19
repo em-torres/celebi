@@ -37,5 +37,10 @@ namespace Logica
         {
             return cli.BusquedaProducto(parametro, opcion);
         }
+
+        public DataTable BusquedaProductoPorId(int parametro)
+        {
+            return cli.BusquedaProductoPorId(parametro);
+        }
     }
 }
