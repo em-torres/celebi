@@ -111,6 +111,38 @@ namespace celebi.Vistas.OrdenCompra
                 lblCostoNeto.Text = float.Parse(dgvOrd.Rows[fila].Cells["Costo Neto"].Value.ToString()).ToString("N2");
                 lblCostoTotal.Text = float.Parse(dgvOrd.Rows[fila].Cells["Costo Total"].Value.ToString()).ToString("N2");
                 chkActivo.Checked = Convert.ToBoolean(dgvOrd.Rows[fila].Cells["Activo"].Value.ToString());
+
+                // Implementacion llenado DataGrid Productos
+                if (Int32.Parse(dgvProd.Rows.Count.ToString()) > 0)
+                {
+                    limpiarDataGridProductos();
+                }
+
+                string[] row = new string[] { "", "", "", "", "" };
+
+                OrdenCompra_ProductoBL ordpr = new OrdenCompra_ProductoBL();
+                OrdenCompra_Productos entidad = new OrdenCompra_Productos();
+
+                DataTable productos = new DataTable();
+                productos = ordpr.LlenarOrdenCompra_Productos(ID);
+
+                foreach (DataRow dgvRow in productos.Rows)
+                {
+                    try
+                    {
+                        dgvProd.Rows.Add(row);
+                        cbxProducto.SelectedValue = dgvRow[2].ToString();
+                        dgvProd.Rows[filaActual].Cells["Producto"].Value = cbxProducto.GetItemText(this.cbxProducto.SelectedItem);
+                        dgvProd.Rows[filaActual].Cells["Cantidad"].Value = dgvRow[1].ToString();
+                        dgvProd.Rows[filaActual].Cells["IdProducto"].Value = dgvRow[2].ToString();
+                        dgvProd.Rows[filaActual].Cells["Precio"].Value = dgvRow[3].ToString();
+                        dgvProd.Rows[filaActual].Cells["DescProd"].Value = dgvRow[4].ToString();
+                        dgvProd.Rows[filaActual].Cells["Costo"].Value = dgvRow[5].ToString();
+
+                        filaActual += 1;
+                    }
+                    catch (Exception e) { throw e; }
+                }
             }
             catch (Exception) { throw; }
         }
@@ -171,19 +203,7 @@ namespace celebi.Vistas.OrdenCompra
             cbxSolicitante.SelectedIndex = 0;
 
             // Limpiar DataGrid Productos
-            do
-            {
-                foreach (DataGridViewRow row in dgvProd.Rows)
-                {
-                    try
-                    {
-                        dgvProd.Rows.Remove(row);
-                    }
-                    catch (Exception) { }
-                }
-            } while (dgvProd.Rows.Count > 0);
-
-            filaActual = 0;
+            limpiarDataGridProductos();
 
             // Enfoca el primer campo
             tabControl1.SelectedIndex = 1;
@@ -353,6 +373,7 @@ namespace celebi.Vistas.OrdenCompra
                 }
                 else
                 {
+                    // Guardar Orden de Compra
                     mensaje = "Registro Actualizado.";
                     entidad.IdOrdenCompra = txtId.Text;
                     entidad.FechaSolicitud = dtpFechaSolicitud.Value.Date;
@@ -367,6 +388,11 @@ namespace celebi.Vistas.OrdenCompra
 
                     actualizar.ActualizarOrdenCompra(entidad);
 
+                    // Actualizar Productos Orden de Compra
+                    eliminarProductosOrdCompra();
+                    registrarProductosOrdCompra();
+
+                    // Limpieza y Estructura General
                     LlenarGridOrdenCompra();
                     MessageBox.Show(mensaje, "Actualización",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -408,6 +434,7 @@ namespace celebi.Vistas.OrdenCompra
                         OrdenCompraBL eliminar = new OrdenCompraBL();
                         entidad.IdOrdenCompra = ID;
                         eliminar.EliminarOrdenCompra(entidad);
+                        eliminarProductosOrdCompra();
 
                         LlenarGridOrdenCompra();
                         btnNuevo.PerformClick();
@@ -494,6 +521,12 @@ namespace celebi.Vistas.OrdenCompra
             dgvProd.Rows.RemoveAt(filaEnfocada);
 
             sumarCostoNeto();
+
+            filaActual -= 1;
+            if (filaActual < 0)
+            {
+                filaActual = 0;
+            }
         }
 
         private void DgvProd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -560,6 +593,32 @@ namespace celebi.Vistas.OrdenCompra
                 }
                 
             }
+        }
+
+        private void eliminarProductosOrdCompra()
+        {
+            OrdenCompra_ProductoBL ordpr = new OrdenCompra_ProductoBL();
+            OrdenCompra_Productos entidad = new OrdenCompra_Productos();
+
+            entidad.IdOrdenCompra = ID;
+            ordpr.EliminarOrdenCompra_Producto(entidad);
+        }
+
+        private void limpiarDataGridProductos()
+        {
+            do
+            {
+                foreach (DataGridViewRow row in dgvProd.Rows)
+                {
+                    try
+                    {
+                        dgvProd.Rows.Remove(row);
+                    }
+                    catch (Exception) { }
+                }
+            } while (dgvProd.Rows.Count > 0);
+
+            filaActual = 0;
         }
 
     }

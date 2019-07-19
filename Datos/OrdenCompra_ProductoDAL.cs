@@ -26,16 +26,38 @@ namespace Datos
             AccesoDatos = new Acceso();
         }
 
-        public DataTable ObtenerOrdenCompra_Producto()
+        public DataTable ObtenerOrdenCompra_Producto(string parametro)
         {
-            string query = "SELECT * FROM OrdenCompra_Producto";
-            using (AdaptadorSQL = new SqlDataAdapter(query, AccesoDatos.ObtenerConexion()))
-            {
-                Dt = new DataTable();
-                AdaptadorSQL.Fill(Dt);
-            }
+            string query = "SELECT * FROM OrdenCompra_Producto WHERE IdOrdenCompra = @param ORDER BY Costo;";
 
-            return Dt;
+            using (ComandoSQL = new SqlCommand())
+            {
+                ComandoSQL.Connection = AccesoDatos.ObtenerConexion();
+                ComandoSQL.CommandText = query;
+                ComandoSQL.CommandType = CommandType.Text;
+
+                try
+                {
+                    ComandoSQL.Parameters.AddWithValue("@param", parametro);
+
+                    using (AdaptadorSQL = new SqlDataAdapter())
+                    {
+                        AdaptadorSQL.SelectCommand = ComandoSQL;
+                        Dt = new DataTable();
+                        AdaptadorSQL.Fill(Dt);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    AccesoDatos.ObtenerConexion().Close();
+                }
+
+                return Dt;
+            }
         }
 
         public string InsertarOrdenCompra_Producto(OrdenCompra_Productos OrdenCompra_Producto)
@@ -90,8 +112,6 @@ namespace Datos
                 try
                 {
                     ComandoSQL.Parameters.AddWithValue("@IdOrdenCompra", OrdenCompra_Producto.IdOrdenCompra);
-
-                    //Ejecutar Comando
                     ComandoSQL.ExecuteNonQuery();
                 }
                 catch (Exception)

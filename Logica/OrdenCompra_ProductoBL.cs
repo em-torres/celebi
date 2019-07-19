@@ -13,9 +13,9 @@ namespace Logica
     {
         OrdenCompra_ProductoDAL cli = new OrdenCompra_ProductoDAL();
 
-        public DataTable LlenarOrdenCompra_Productos()
+        public DataTable LlenarOrdenCompra_Productos(string param)
         {
-            return cli.ObtenerOrdenCompra_Producto();
+            return cli.ObtenerOrdenCompra_Producto(param);
         }
 
         public string RegOrdenCompra_Producto(OrdenCompra_Productos entidad)
