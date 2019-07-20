@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using celebi.Vistas.Reportes;
 
 namespace celebi.Vistas.OrdenCompra
 {
@@ -621,5 +622,10 @@ namespace celebi.Vistas.OrdenCompra
             filaActual = 0;
         }
 
+        private void ToolStripButton1_Click(object sender, EventArgs e)
+        {
+            FrmRepOrdenCompra menu = new FrmRepOrdenCompra();
+            menu.ShowDialog();
+        }
     }
 }

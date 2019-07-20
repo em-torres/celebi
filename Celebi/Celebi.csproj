@@ -132,7 +132,35 @@
     <Compile Include="Vistas\Reportes\FrmRepCompanias.Designer.cs">
       <DependentUpon>FrmRepCompanias.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Reportes\FrmRepDepartamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Reportes\FrmRepDepartamentos.Designer.cs">
+      <DependentUpon>FrmRepDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Reportes\FrmRepEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Reportes\FrmRepEmpleados.Designer.cs">
+      <DependentUpon>FrmRepEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Reportes\FrmRepOrdenCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Reportes\FrmRepOrdenCompra.Designer.cs">
+      <DependentUpon>FrmRepOrdenCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Reportes\FrmRepProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Reportes\FrmRepProductos.Designer.cs">
+      <DependentUpon>FrmRepProductos.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Reportes\RepCompanias.rdlc" />
+    <EmbeddedResource Include="Reportes\RepDepartamentos.rdlc" />
+    <EmbeddedResource Include="Reportes\RepEmpleados.rdlc" />
+    <EmbeddedResource Include="Reportes\RepOrdenCompra.rdlc" />
+    <EmbeddedResource Include="Reportes\RepProductos.rdlc" />
     <EmbeddedResource Include="Vistas\Login\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +194,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Reportes\FrmRepCompanias.resx">
       <DependentUpon>FrmRepCompanias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Reportes\FrmRepDepartamentos.resx">
+      <DependentUpon>FrmRepDepartamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Reportes\FrmRepEmpleados.resx">
+      <DependentUpon>FrmRepEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Reportes\FrmRepOrdenCompra.resx">
+      <DependentUpon>FrmRepOrdenCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Reportes\FrmRepProductos.resx">
+      <DependentUpon>FrmRepProductos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="CELEBI_DataSet.xsc">
       <DependentUpon>CELEBI_DataSet.xsd</DependentUpon>

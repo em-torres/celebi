@@ -1,4 +1,5 @@
-﻿using Entidades;
+﻿using celebi.Vistas.Reportes;
+using Entidades;
 using Logica;
 using System;
 using System.Collections.Generic;
@@ -350,6 +351,12 @@ namespace celebi.Vistas.Mantenimiento
         private void TxtBusqueda_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ToolStripButton1_Click(object sender, EventArgs e)
+        {
+            FrmRepProductos menu = new FrmRepProductos();
+            menu.ShowDialog();
         }
     }
 }

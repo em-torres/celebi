@@ -59,6 +59,7 @@
             this.btnActualizar = new System.Windows.Forms.ToolStripButton();
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
             this.btnSalir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProd)).BeginInit();
@@ -350,6 +351,7 @@
             this.btnGuardar,
             this.btnActualizar,
             this.btnEliminar,
+            this.toolStripButton1,
             this.btnSalir});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -406,6 +408,16 @@
             this.btnSalir.Size = new System.Drawing.Size(34, 34);
             this.btnSalir.Text = "Salir";
             this.btnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::celebi.Properties.Resources._Smartphone;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(34, 34);
+            this.toolStripButton1.Text = "Imprimir";
+            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
             // FrmProductos
             // 
@@ -467,5 +479,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtCosto;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

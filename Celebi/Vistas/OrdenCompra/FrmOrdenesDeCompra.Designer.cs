@@ -92,6 +92,7 @@
             this.cELEBIDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.companiasTableAdapter = new celebi.CELEBI_DataSetTableAdapters.CompaniasTableAdapter();
             this.productosTableAdapter = new celebi.CELEBI_DataSetTableAdapters.ProductosTableAdapter();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrd)).BeginInit();
@@ -663,6 +664,7 @@
             this.btnGuardar,
             this.btnActualizar,
             this.btnEliminar,
+            this.toolStripButton1,
             this.btnSalir});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -736,6 +738,16 @@
             // productosTableAdapter
             // 
             this.productosTableAdapter.ClearBeforeFill = true;
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::celebi.Properties.Resources._Smartphone;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(34, 34);
+            this.toolStripButton1.Text = "Imprimir";
+            this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
             // FrmOrdenesDeCompra
             // 
@@ -841,5 +853,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Costo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescProd;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
